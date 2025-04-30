@@ -1,0 +1,185 @@
+.custom-select {
+
+  &,
+  &::picker(select) {
+    appearance: base-select;
+  }
+}
+
+.logobar {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 151px;
+  z-index: 3000;
+}
+
+.logobar::before {
+  position: absolute;
+  top: -60px;
+  left: 0px;
+  height: 320px;
+  width: 151px;
+  content: "";
+  background: url(../images/lumensoft_bloks.svg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 3004;
+}
+
+.logobar::after {
+  position: absolute;
+  top: 250px;
+  bottom: 0px;
+  left: 0px;
+  width: 151px;
+  content: "";
+  background: url(../images/lumensoft_lines.svg);
+  background-repeat: repeat-y;
+  background-origin: border-box;
+  background-attachment: fixed;
+
+  z-index: 3006;
+  content: "";
+}
+
+main {
+  padding-top: 90px;
+}
+
+.card-scroller {
+  min-height: calc(100vh - 12rem);
+  height: calc(100vh - 12rem);
+  display: flex;
+  flex-direction: column;
+}
+
+main > .container, header .container {
+  margin-left: 140px !important;
+}
+
+.large.tooltip-inner {
+  max-width: 1000px !important;
+}
+
+.tableFixHead {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+#dataoverzicht th {
+  margin-top: 5px;
+}
+
+.bg-lumensoft {
+  background-color: #112855 !important;
+}
+
+.input-group>input.weeksInput {
+  flex: 0 1 150px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.strong {
+  font-weight: bolder;
+  font-style: italic;
+}
+
+[data-bs-theme="light"] {
+  --bs-body-color-rgb: 0, 0, 0;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-color-rgb: 255, 255, 255;
+}
+
+[popover] {
+  padding: 1rem 3rem;
+  box-shadow: 0 0 1rem hsl(100 30% 50%);
+}
+
+.budget>li span:last-of-type  {
+  text-align: end !important;
+  float: right !important;
+}
+
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+.bd-mode-toggle {
+  z-index: 1500;
+}
+
+.bd-mode-toggle .bi {
+  width: 1em;
+  height: 1em;
+}
+
+.bd-mode-toggle .dropdown-menu .active .bi {
+  display: block !important;
+}
+
+.btn-bd-primary {
+  --bd-violet-bg: #712cf9;
+  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--bd-violet-bg);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #6528e0;
+  --bs-btn-hover-border-color: #6528e0;
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #5a23c8;
+  --bs-btn-active-border-color: #5a23c8;
+}
+
+@media (min-width: 768px) {
+/*
+  .navbar-brand {
+      margin-left: 130px !important;
+  }
+  section .body {
+      font-size: 1.5rem;
+  }
+  .text-md-nowrap {
+      white-space: nowrap!important;
+      text-align:start!important;
+  }
+*/
+
+}
+@media (min-width: 576px) {
+  .logobar {
+    display: block;
+}
+/*
+  section > .container-fluid,
+  section > .container {
+      padding-left: 100px !important;
+  }
+  .navbar-toggler {
+      margin-left: 130px !important;
+  }
+
+  nav .navbar-collapse {
+      margin-left: 150px;
+  }
+  .footer-text {
+      margin-left: 90px;
+  }
+*/
+}
+
+.text-ds-wavy-red {
+  text-decoration: line-through wavy var(--bs-secondary-color);
+}

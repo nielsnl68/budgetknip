@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="40mm"
+   height="10mm"
+   viewBox="0 -2.7755576e-17 39.999999 10"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="Lumensoft lines.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title210720">LumenSoft-logo-lines</title>
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="3.3589188"
+     inkscape:cx="6.996299"
+     inkscape:cy="83.80673"
+     inkscape:window-width="1920"
+     inkscape:window-height="1013"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3"
+     inkscape:guide-bbox="true"
+     units="mm"
+     inkscape:snap-bbox="true"
+     inkscape:snap-to-guides="true"
+     height="10mm">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1527" />
+    <sodipodi:guide
+       position="29.959468,27.10364"
+       orientation="0,-1"
+       id="guide867" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4150">
+      <stop
+         style="stop-color:#b3b3b3;stop-opacity:1"
+         offset="0"
+         id="stop4146" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0.27963296"
+         id="stop4892" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0.73354059"
+         id="stop4152" />
+      <stop
+         style="stop-color:#999999;stop-opacity:1"
+         offset="1"
+         id="stop4148" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3696"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3694" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient43819"
+       inkscape:swatch="gradient">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop46212" />
+      <stop
+         style="stop-color:#8f877a;stop-opacity:0;"
+         offset="1"
+         id="stop46214" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient43819-1">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop46177" />
+      <stop
+         style="stop-color:#8f877a;stop-opacity:0;"
+         offset="1"
+         id="stop46179" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4150"
+       id="linearGradient3734"
+       gradientUnits="userSpaceOnUse"
+       x1="9.1540842"
+       y1="57.896358"
+       x2="10.709294"
+       y2="57.896358"
+       gradientTransform="matrix(1.3143966,0,0,0.21034999,-2.965535,-7.8955197)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4150"
+       id="linearGradient5394"
+       x1="16.8253"
+       y1="69.368042"
+       x2="18.477997"
+       y2="69.368042"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.32087035,0,-17.258148)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4150"
+       id="linearGradient5402"
+       x1="22.48225"
+       y1="67.08622"
+       x2="24.072334"
+       y2="67.08622"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.27883685,0,-13.706109)" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="sidelines"
+     style="display:inline">
+    <rect
+       style="opacity:1;vector-effect:non-scaling-stroke;fill:url(#linearGradient3734);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.000143296;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;-inkscape-stroke:hairline"
+       id="rect221"
+       width="2.0899999"
+       height="10"
+       x="9.0139999"
+       y="0" />
+    <rect
+       style="vector-effect:non-scaling-stroke;fill:url(#linearGradient5402);fill-opacity:1;stroke:none;stroke-width:0.000125338;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;-inkscape-stroke:hairline"
+       id="rect221-7"
+       width="1.5900835"
+       height="10"
+       x="22.48225"
+       y="0" />
+    <rect
+       style="opacity:1;vector-effect:non-scaling-stroke;fill:url(#linearGradient5394);fill-opacity:1;stroke:none;stroke-width:0.000156398;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;-inkscape-stroke:hairline"
+       id="rect223"
+       width="1.6526958"
+       height="10"
+       x="16.8253"
+       y="0" />
+  </g>
+  <metadata
+     id="metadata210718">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>LumenSoft-logo-lines</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

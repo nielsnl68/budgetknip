@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="nl" class="h-100" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>BudgetKnip</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="./css/budgetknip.css" />
+  </head>
+
+  <body id="page-top" class="d-flex flex-column h-100">
+    <!-- Navigation -->
+    <header class="bg-danger">
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary bg-lumensoft fixed-top border-bottom border-primary border-4"
+        data-bs-theme="dark"
+        id="mainNav">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <a class="navbar-brand fs-2" href="#page-top">
+                <img
+                  loading="eager"
+                  decoding="async"
+                  src="./images/logo-text.png"
+                  alt="LumenSoft NL"
+                  width="280"
+                  height="54"
+                  class="pb-2" />
+                <span class="align-bottom"
+                  >&nbsp;-&nbsp;<b>B</b>udget<b>K</b>nip</span
+                >
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <div
+                class="navbar-nav navbar-nav-scroll nav-underline justify-content-end">
+                <a class="nav-link" href="index.html#intro">Intro</a>
+                <a class="nav-link" href="index.html#instructions"
+                  >Instructies</a
+                >
+                <a class="nav-link" href="app.html#demo">App</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div
+        data-bs-spy="scroll"
+        data-bs-target="#mainNav"
+        data-bs-root-margin="0px 90px -40%"
+        data-bs-smooth-scroll="true"
+        tabindex="0">
+        <section id="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 mx-auto">
+                <h1>Introductie</h1>
+
+                <div class="row">
+                  <div class="col-9 mx-auto">
+                    <p class="lead"
+                      >Deze android APP is ontwikkeld om mijn financiële budget
+                      te monitoren.<br />
+                      BudgetKnip is nu als beta beschrikbaar voor iedereen.</p
+                    >
+                    <p
+                      >U heeft er vast ook wel eens last van of van andere
+                      gehoord dat de maand langer is dan dat er geld is om uit
+                      te geven. Daar had ik ook geregeld last van. Vooral als ik
+                      halverwege de maand dacht genoeg geld te hebben terwijl
+                      later bleek dat er nog vaste lasten moesten worden
+                      afgeschreven.
+                    </p>
+                  </div>
+                  <div class="col-3 mx-auto">
+                    <figure class="figure">
+                      <img
+                        alt="BudgetKnip logo"
+                        src="images\logo.png"
+                        class="col-11 figure-img img-fluid" />
+                    </figure>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <p
+                      >Ik zocht naar een laagdrempelige en simpele oplossing om
+                      mijn bestedingsruimte in beeld te krijgen en inzicht te
+                      houden welke vaste lasten er afgeschreven worden. Het leek
+                      mij handig deze gegevens direct bij de hand te hebben,
+                      bijvoorbeeld op een mobieltje of tablet. Mij werd
+                      aangeraden om van een EXCEL sheet te gebruiken, maar bleek
+                      te lastig in gebruik, te bewerkelijk en onoverzichtelijk.
+                      Daarom heb ik gekozen voor het ontwikkelen van deze APP
+                      “BudgetKnip”.</p
+                    >
+
+                    <p>
+                      <b>Het werkt als volgd:</b> Nadat uw vaste inkomsten en
+                      uitgaven ingevoerd zijn, berekent de APP wat u per maand
+                      en week kunt uitgeven en toont wanneer geld wordt
+                      bijgeboekt of afgeschreven. Door het regelmatig invoeren
+                      van uw banksaldo berekent de APP accuraat uw weekbudget.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="alert alert-primary">
+                  <p>
+                    <b>BELANGRIJK:</b> De APP is geheel autonoom, dat wil zeggen
+                    dat er geen gegevens worden opgevraagd bij/ of verstuurd
+                    naar uw bank of welke andere tussen persoon. Ook blijven
+                    alle ingevoerde gegevens op uw eigen computer (bv. mobieltje
+                    of tablet) staan en wordt niet in een cloud omgeving
+                    bewaard.<br />
+                  </p>
+                  Aan de getoonde berekeningen kunnen geen rechten ontleend
+                  worden. U dient zelf te controleren of uw ingevoerde bij- en
+                  afschrijvingen op het juiste moment uitgevoerd worden en dat
+                  deze accuraat in de app zijn ingevoerd.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="instructions" class="bg-secondary-subtle">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 mx-auto">
+                <h1 id="hethoofdscherm">Het hoofdscherm</h1>
+
+                <p class="lead"
+                  >Het hoofdscherm bestaat uit 2 kolommen, links de transacties
+                  en rechts de berekeningen met de totalen en de budget
+                  berekening
+                  <!-- en
+                de categorieën -->. Bij kleine schermen (bv. een mobieltje) is
+                  de linker kolom verborgen en kan worden getoond door van link
+                  naar rechts te vegen. De getoonde bedragen zijn groen voor
+                  inkomsten en rood voor uitgaven.</p
+                >
+                <div class="row">
+                  <div class="col-3 mx-auto">
+                    <figure class="figure">
+                      <img
+                        alt="Zo de transacties worden getoond"
+                        src="images\transacties.png"
+                        class="figure-img img-fluid" />
+                      <figcaption class="figure-caption text-left"
+                        >Transactie overzicht.</figcaption
+                      >
+                    </figure>
+                  </div>
+                  <div class="col-9 mx-auto">
+                    <h2 id="hettransactiesoverzicht">De transacties</h2>
+                    <p
+                      >De Linker kolom van het scherm toont de lijst met alle
+                      transacties netjes gesorteerd op datum en loopt vanaf de
+                      laatste keer dat de banksaldo is geupdate.<br />
+                      <strong>Let op!</strong> Als er nog geen banksaldo is
+                      ingevuld loopt dit vanaf de huidige datum.</p
+                    >
+                    <p>
+                      In dit overzicht worden de transactie regels op
+                      verschillende manieren weer gegeven.
+                    </p>
+
+                    <ul>
+                      <li
+                        >Alle uitgevoerde transacties worden gemarkeerd met een
+                        licht grijze achtergrond na de laatse moment van
+                        ingevulen van de bank banksaldo.</li
+                      >
+
+                      <li
+                        >De transacties die nog moeten worden uitgevoerd tot aan
+                        het einde van de huidige financiele maand zijn fel wit
+                        of zwart(*) getoond.</li
+                      >
+                      <li>
+                        Het moment waarop de financiele maand begint wordt vet
+                        en cursief getoond.
+                      </li>
+                      <li
+                        >Alles na de huidige financiële maand wordt grijs van
+                        kleur getoond.</li
+                      >
+                      <li
+                        >De transacties die gaan plaatsvinden over meer dan een
+                        maand worden doorgestreept getoond; om aan te geven dat
+                        deze nu nog niet meegerekend worden in berekening.</li
+                      >
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-9 mx-auto">
+                    <h2 id="detotaleoverzichten">De totalen</h2>
+
+                    <p
+                      >In de rechter kolom vindt u de berekeningen onderverdeeld
+                      in twee blokken;
+                    </p>
+                    <h4>Totaal overzicht deze maand.</h4>
+                    <p>
+                      Hier vindt u de totalen van de inkomsten en uitgaven, het
+                      besteedbaar bedrag en wat beschikbaar is per week.</p
+                    >
+                    <h4>Budget berekening.</h4>
+                    <p>
+                      Hier vindt u naast het banksaldo ook de transacties die
+                      uitgevoerd zijn na de laatste banksaldo update, de
+                      uitgaven en inkomsten die nog moeten plaatsvinden en de
+                      prive uitgaven. Hieruit word het werkelijk besteedbaar
+                      bedrag berekend als ook het weekbudget wat u nog
+                      beschikbaar heeft.</p
+                    >
+                    <!--
+                  <h4>Overzicht per categorie</h4>
+                    <p>
+                      een overzicht van de transacties gegroepeerd per
+                      categorie.
+                    </p>
+-->
+                  </div>
+                  <div class="col-3 mx-auto">
+                    <figure class="figure">
+                      <img
+                        alt="Zo worden de totalen getoont"
+                        src="images\totalen.png"
+                        class="figure-img img-fluid" />
+                      <figcaption class="figure-caption text-right"
+                        >De totalen overzicht.</figcaption
+                      >
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="ingebruiknemen" class="">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 mx-auto">
+                <h1 id="hetingebruiknamen">Het ingebruiknemen</h1>
+
+                <p class="lead"
+                  >Om de APP zo goed mogelijk te laten werken dienen alle vaste
+                  bank transacties (bij- en afschrijving) ingevoerd te worden.
+                  Voer bijvoorbeeld eerst uw salaris of uitkering in. Loop
+                  vervolgens nauwkeurig de afschriften door tot u opnieuw uw
+                  salaris of uitkering ziet. <br />
+                  Controleer vervolgens of u nog betalingen heeft die over een
+                  langere periode dan een maand worden bij-/afgeschreven o. (bv.
+                  vacantiegeld en jaar abo's)
+                </p>
+                <h2 id="transactiesaanmaken">Transacties aanmaken</h2>
+
+                <p
+                  >Om een transactie toe te voegen klikt u op de plus-icoon
+                  <i class="bi bi-calendar-plus-fill"></i>, rechtsboven in het
+                  transactie overzicht. Als u de gegevens hebt ingevoerd kunt u
+                  met de opslaan button rechtsonder de gegevens bewaren. <br />
+                  Wijzigt er iets aan de transactie of is deze niet meer van
+                  toepassing druk dan op de transactie. De gegevens van de
+                  transactie worden dan getoond en u kunt deze aanpassen, of
+                  verwijderen</p
+                >
+
+                <div class="row">
+                  <div class="col-3 mx-auto">
+                    <figure class="figure">
+                      <img
+                        alt="Een screenshot of het invul scherm voor transacties"
+                        src=".\images\editform.png"
+                        class="figure-img img-fluid" />
+                      <figcaption class="figure-caption text-left"
+                        >Transactie aanmaken/wijzigen.</figcaption
+                      >
+                    </figure>
+                  </div>
+                  <div class="col-9 mx-auto">
+                    <h3 id="invullenvandetransacties"
+                      >Invullen van de transacties</h3
+                    >
+
+                    <p
+                      >Per transactie dienen de volgende gegevens ingevoerd te
+                      worden:</p
+                    >
+
+                    <ul>
+                      <li
+                        ><strong>Een omschrijving</strong> De omschrijving van
+                        de begunstigde of waarvoor het is.</li
+                      >
+
+                      <li
+                        ><strong>Het bedrag</strong> Het bedrag dat bij- of
+                        afgeschreven wordt en kies of het inkomsten of uitgaven
+                        zijn. Via de 2 buttons rechts van het bedrag kunt u
+                        selecteren of het om inkomsten of uitgaven gaat.</li
+                      >
+
+                      <li
+                        ><strong>De transactie datum</strong> De datum waarop de
+                        transactie voor het laatst plaats heeft gevonden.
+                      </li>
+
+                      <li
+                        ><strong>De frequentie </strong> De frequentie kan per
+                        maand, per 2 maanden, per kwartaal, per half jaar, per
+                        jaar of aantal weken zijn.</li
+                      >
+                      <!--                    <li
+                      >De categorie <br />
+                      Om wat voor soort transactie het gaat (bv. Energie kosten,
+                      huur, verzekeringen ed.). <br />
+                      Deze categorieën kunt u zelf aanpassen/toevoegen naar
+                      eigen inzicht.</li
+                    >
+-->
+                      <li
+                        ><strong>Verwerkingstactiek</strong> Bij alle andere
+                        inkomsten kunt u aangeven wat u hiermee wilt doen.<br />
+                        <ul>
+                          <li>
+                            <strong><em>In budget</em></strong> het bedrag wordt
+                            in uw weekbudget verdeeld over alle weken van de
+                            maand.</li
+                          >
+                          <li
+                            ><strong><em>Vrije uitgaven</em></strong> wordt na
+                            ontvangst in zijn geheel aan uw weekbudget
+                            toegevoegd.</li
+                          >
+                          <li
+                            ><strong><em>Sparen</em></strong> bij binnenkomst
+                            wordt het <strong>begin banksaldo</strong> opgehoogd
+                            met dit bedrag zodat het geen invloed heeft op uw
+                            budget.</li
+                          >
+                          <li
+                            ><strong>Negeren</strong> Wanneer een transactie
+                            tijdelijk wordt gestopt, dan kunt u deze op negeren
+                            plaatsen.</li
+                          >
+                        </ul>
+                      </li>
+
+                      <li
+                        ><strong>Start financiële maand</strong> Optioneel, als
+                        u er voor kiest om de financiele maand te laten starten
+                        via een transactie, dan dient dient 1 van de transacties
+                        als <strong>Start financiële maand</strong> aangevinkt
+                        te worden waardoor de APP weet dat deze transactie uw
+                        belangrijkste inkomste bron is.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="configuratie" class="bg-secondary-subtle">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-9 mx-auto">
+                <h1 id="hethoofdscherm">Instellingen wijzigen</h1>
+
+                <p class="lead"
+                  >Om deze APP optimaal te kunnen gebruiken zijn een aantal
+                  instellingen mogelijk.
+                </p>
+                <p
+                  >Het gaat hier vooral om hoe het budget wordt bereken en hoe
+                  de transactie overzicht wordt getoond. U opent het
+                  configuratie scherm door op de
+                  <i class="bi bi-gear-fill"></i> button rechts boven te
+                  klikken. En kunt u de volgende instellingen vrijblijvend
+                  wijzigen. U kunt dan zien wat er gebeurd met de berekeningen.
+                </p>
+              </div>
+              <div class="col-3 mx-auto">
+                <figure class="figure">
+                  <img
+                    alt="Hier is een preview of dit scherm."
+                    src="images\transacties.png"
+                    class="figure-img img-fluid" />
+                  <figcaption class="figure-caption text-left"
+                    >Configuratie scherm.</figcaption
+                  >
+                </figure>
+              </div>
+              <div class="col-9 mx-auto">
+                <h3 id="hettransactiesoverzicht">Start financiele maand</h3>
+                <p
+                  >Er zijn hier 3 mogelijkheden om aan te geven op welke dag van
+                  de maand u het liefst wil beginnen als financielle maand. Kwa
+                  berekening maakt het niet veel uit. Het wordt vooral gebruikt
+                  om te bepalen van welke dag tot welke dag een week gerekend
+                  wordt.</p
+                >
+                <p
+                  >Bij de eerste 2 opties verschilt dit per maand en is terug te
+                  zien in het berekende week budget. De laatste optie loopt de
+                  week standaard van maandag tot en met zondag.</p
+                >
+                <p
+                  >Deze instelling bepaald namelijk het moment waarop BudgetKnip
+                  met een schone lei begint en het mogelijke restand afboekt om
+                  dit te sparen.</p
+                >
+                <ul>
+                  <li>
+                    <strong>Aangeven bij een transactie.</strong> Dit zou
+                    bijvoorbeeld het moment zijn dat het hoofd inkomen wordt
+                    ontvangen.
+                  </li>
+                  <li> <strong>Eerste dag van de maand.</strong> ... </li>
+                  <li>
+                    <strong>Eerste maandag van de maand.</strong> Leef je van
+                    maandag tot maandag, dan zou dit een optie kunnen zijn.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <h4 id="berekeningperdag">Berekening bedrag p/dag</h4>
+                <p
+                  >BudgetKnip berekend eerst wat het budget is per dag en
+                  vervolgens vermenigvuldig het dit bedrag met 7 om tot het
+                  berekend weekbudget te komen. Tijdens het testen kwamen ik er
+                  al gauw achter dat berekend budget bedrag per dag nogal
+                  fluctuerde, waarbij ik af en toe in geldnood kwam.<br />
+                  Dit komt vooral door de verschillende dagen van de maand en
+                  het moment wanneer een bedrag wordt gestort of afgeboekt.<br />
+                  Als oplossing hebben ik besloten om elke maand als 31 dagen te
+                  beschouwen. Dit heeft tevens het voordeel dat in Februari en
+                  bij maanden van 30 dagen aan het einde geld overhoud.
+                </p>
+                <p> Er zijn hier 2 mogelijkheden om uit te kiezen: </p>
+                <ul>
+                  <li>
+                    <strong>Gebesseerd op 31 dagen per maand.</strong> Zie
+                    beschrijving hier boven.
+                  </li>
+                  <li>
+                    <strong>Gebasseerd op werkelijk dagen per maand.</strong>
+                    Dit is zoals het voorheen werkte. En vergt veel disapline om
+                    het banksaldo up-to-date te houden. En vooraf te controleren
+                    hoeveel je op die dag kan uitgeven.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="banksaldo">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 mx-auto">
+                <div class="row">
+                  <div class="col-9 mx-auto">
+                    <h2 id="ingavehuidigebanksaldo"
+                      >Ingave huidige banksaldo</h2
+                    >
+
+                    <p
+                      >Het banksaldo kunt u op twee manieren aanpassen. In het
+                      hoofdscherm dmv. het euro-icoon rechts boven; of via de
+                      dashboard widget dmv. op de app-icoon te drukken. Er wordt
+                      vervolgens een dialoog geopend waarin u het saldo kunt
+                      invoeren. Na het invoeren van het banksaldo zal het budget
+                      herberekend worden en getoond. Kijk in uw bank-app hoe u
+                      uw banksaldo kunt opvragen.</p
+                    >
+                  </div>
+                  <div class="col-3 mx-auto">
+                    <figure class="figure">
+                      <img
+                        alt="Screenshot voor het invoeren van de bank saldo"
+                        src=".\images\banksaldo.png"
+                        class="figure-img img-fluid" />
+                      <figcaption class="figure-caption text-left"
+                        >Ingave scherm banksaldo.</figcaption
+                      >
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
+      <div class="container">
+        <p class="m-0 text-center text-body-secondary">
+          Copyright &copy; <b>L</b>umen<b>S</b>oft 2025
+        </p>
+        <p id="result"></p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <div class="logobar"></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"></script>
+  </body>
+</html>

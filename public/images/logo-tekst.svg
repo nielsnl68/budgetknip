@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="270"
+   height="50"
+   viewBox="0 0 71.4375 13.229167"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="logo-tekst.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#000000"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     width="250px"
+     units="px"
+     inkscape:zoom="2.7094433"
+     inkscape:cx="130.65415"
+     inkscape:cy="100.57417"
+     inkscape:window-width="1920"
+     inkscape:window-height="1013"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient29572">
+      <stop
+         style="stop-color:#17ead9;stop-opacity:1"
+         offset="0"
+         id="stop29568" />
+      <stop
+         style="stop-color:#6078ea;stop-opacity:1"
+         offset="1"
+         id="stop29570" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient29572"
+       id="linearGradient29574"
+       x1="36.250019"
+       y1="0.36910117"
+       x2="35.959515"
+       y2="13.070773"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Laag 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:13.1819px;line-height:8.23882px;font-family:sans-serif;letter-spacing:0.698365px;word-spacing:0px;mix-blend-mode:normal;fill:url(#linearGradient29574);fill-opacity:1;stroke:#ffde59;stroke-width:0.180737;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.91"
+       x="-0.70435244"
+       y="12.500979"
+       id="text2124"
+       transform="matrix(0.99847246,0,0,0.8984697,1.4432557,0.14986286)"
+       inkscape:label="text2124"><tspan
+         sodipodi:role="line"
+         id="tspan2122"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.1819px;font-family:Fallacy;-inkscape-font-specification:'Fallacy, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient29574);fill-opacity:1;stroke:#ffde59;stroke-width:0.180737;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.91"
+         x="-0.70435244"
+         y="12.500979"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.9883px;font-family:Fallacy;-inkscape-font-specification:'Fallacy, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient29574);fill-opacity:1;stroke:#ffde59;stroke-width:0.180737;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.91"
+           id="tspan10856">L</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.2591px;font-family:Fallacy;-inkscape-font-specification:'Fallacy, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient29574);fill-opacity:1;stroke:#ffde59;stroke-width:0.180737;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.91"
+           id="tspan17416">umen</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.9883px;font-family:Fallacy;-inkscape-font-specification:'Fallacy, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient29574);fill-opacity:1;stroke:#ffde59;stroke-width:0.180737;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.91"
+           id="tspan12272">S</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.2591px;font-family:Fallacy;-inkscape-font-specification:'Fallacy, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient29574);fill-opacity:1;stroke:#ffde59;stroke-width:0.180737;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.91"
+           id="tspan19486">oft</tspan></tspan></text>
+  </g>
+</svg>

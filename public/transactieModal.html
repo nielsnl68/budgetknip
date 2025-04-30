@@ -1,0 +1,226 @@
+<div
+  id="transactieModal"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="transactieModalLabel"
+  data-bs-backdrop="static"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-fullscreen-lg-down modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary-subtle">
+        <h1 class="modal-title fs-5" id="transactieModalLabel">
+          Transactie invoeren
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <form id="transactieForm" class="needs-validation" novalidate>
+        <div class="modal-body">
+          <div class="row mb-3">
+            <label for="inputDiscription" class="col-3 col-form-label"
+              >Omschrijving</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                id="inputDiscription"
+                name="title"
+                required />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputAmount" class="col-3 col-form-label">Bedrag</label>
+            <div class="col-4">
+              <div class="input-group">
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  name="amount"
+                  class="form-control text-end"
+                  step=".01"
+                  id="inputAmount"
+                  value="0.00"
+                  required />
+                <input
+                  type="radio"
+                  class="btn-check updateStartItem"
+                  name="direction"
+                  id="inputDirectionInput"
+                  value="in"
+                  checked />
+                <label
+                  class="btn btn-outline-success col-auto"
+                  for="inputDirectionInput"
+                  aria-label="Inkomsten"
+                  ><i class="bi bi-box-arrow-in-right"></i
+                ></label>
+
+                <input
+                  type="radio"
+                  class="btn-check updateStartItem"
+                  name="direction"
+                  id="inputDirectionOutput"
+                  value="uit" />
+                <label
+                  class="btn btn-outline-danger col-auto"
+                  for="inputDirectionOutput"
+                  aria-label="Uit te geven bedrag"
+                  ><i class="bi bi-box-arrow-right"></i
+                ></label>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputlastPayment" class="col-3 col-form-label"
+              >Vorige transactie datum</label
+            >
+            <div class="col-3">
+              <input
+                type="date"
+                class="form-control text-end"
+                name="startDate"
+                id="inputlastPayment"
+                required />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputfinalPayment" class="col-3 col-form-label">
+              Laatste transactie datum
+            </label>
+            <div class="col-3">
+              <input
+                type="date"
+                class="form-control text-end"
+                name="finalPayment"
+                id="inputfinalPayment" />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputFrequentie" class="col-3 col-form-label">
+              Frequentie
+            </label>
+            <div class="col-7">
+              <div class="input-group row">
+                <select
+                  class="form-select updateStartItem col-8"
+                  id="inputFrequentie"
+                  name="times"
+                  aria-label="Select frequentie">
+                  <option selected value="1">Per maand</option>
+                  <option value="2">Per 2 maanden</option>
+                  <option value="3">Per kwartaal</option>
+                  <option value="4">Per half jaar</option>
+                  <option value="5">Per jaar</option>
+                  <option value="6">Per week of aantal weken</option>
+                </select>
+                <input
+                  type="number"
+                  class="form-control text-end d-none col-4"
+                  id="inputWeeks"
+                  name="weeks"
+                  min="1"
+                  max="52"
+                  required
+                  value="1"
+                  aria-label="Aantal weken"
+                  placeholder="Aantal weken" />
+              </div>
+            </div>
+          </div>
+          <div class="mb-1 row">
+            <label for="inputTacticBudget" class="col-3 col-form-label"
+              >Verwerkingstactiek</label
+            >
+            <div class="col-9">
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input updateStartItem"
+                  name="tactic"
+                  id="inputTacticBudget"
+                  value="0"
+                  checked />
+                <label class="form-check-label" for="inputTacticBudget"
+                  >In budget</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input updateStartItem"
+                  name="tactic"
+                  id="inputTacticDirect"
+                  value="1" />
+                <label class="form-check-label" for="inputTacticDirect"
+                  >Vrije uitgaven</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input updateStartItem"
+                  name="tactic"
+                  id="inputTacticStash"
+                  value="2" />
+                <label class="form-check-label" for="inputTacticStash"
+                  >Sparen</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input updateStartItem"
+                  name="tactic"
+                  id="inputTacticIgnore"
+                  value="-1" />
+                <label class="form-check-label" for="inputTacticIgnore"
+                  >Negeren</label
+                >
+              </div>
+            </div>
+            <div class="col-9 offset-3">
+              <div class="form-check form-switch" id="startItemDiv">
+                <input
+                  class="form-check-input updateStartItem"
+                  type="checkbox"
+                  role="switch"
+                  id="inputStartItem"
+                  name="startitem"
+                  value="1" />
+                <label class="form-check-label" for="inputStartItem"
+                  >Financiële maand begint met deze transactie.</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-primary-subtle flex-nowrap p-0">
+          <button
+            type="button"
+            disabled
+            class="btn btn-lg btn-outline-danger fs-6 me-auto text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+            id="verwijderTransactie">
+            Verwijderen
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-lg btn-outline-secondary fs-6 text-decoration-none col-2 border-start py-3 m-0 border-0 rounded-0"
+            data-bs-dismiss="modal">
+            Annuleren
+          </button>
+          <button
+            type="submit"
+            class="btn btn-lg strong btn-outline-success fs-6 text-decoration-none border-start col-2 py-3 m-0 border-0 rounded-0">
+            Opslaan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

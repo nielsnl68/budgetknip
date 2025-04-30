@@ -1,0 +1,227 @@
+<div
+  id="configModal"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="configModalLabel"
+  data-bs-backdrop="static"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-fullscreen-lg-down modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary-subtle">
+        <h1 class="modal-title fs-5" id="configModalLabel">
+          Configuratie aanpassen
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <form id="configForm" class="needs-validation" novalidate>
+        <input type="hidden" name="volgende_ID" />
+        <input type="hidden" name="bankSaldo" />
+        <input type="hidden" name="bankDatum" />
+        <input type="hidden" name="beginDatum" />
+
+        <div class="modal-body">
+          <div class="row mb-3 d-none">
+            <label for="inputstartOfMaand" class="col-4 col-form-label"
+              >Start financieele maand</label
+            >
+            <div class="col-sm-7">
+              <select
+                class="form-select"
+                id="inputstartOfMaand"
+                name="startOfMaand"
+                aria-label="Select frequentie">
+                <option value="2">Eerste maandag van de maand</option>
+                <option value="1" selected>Eerste dag van de maand</option>
+                <option value="0">Opgeven in de transactie</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputDagenPerMaand" class="col-4 col-form-label"
+              >Berekening bedrag p/dag</label
+            >
+            <div class="col-sm-7">
+              <select
+                class="form-select"
+                id="inputDagenPerMaand"
+                name="dagenPerMaand"
+                aria-label="Select frequentie">
+                <option selected value="0">
+                  Gebasseerd op 31 dagen per maand
+                </option>
+                <option value="1">
+                  Gebasseerd op werkelijke dagen per maand
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputBeginSaldo" class="col-4 col-form-label"
+              >Begin Saldo</label
+            >
+            <div class="col-3">
+              <input
+                type="number"
+                inputmode="decimal"
+                name="beginSaldo"
+                class="form-control text-end"
+                step=".01"
+                id="inputBeginSaldo"
+                value="0.00"
+                required />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputSaldoValid" class="col-4 col-form-label"
+              >Geldigheid banksaldo
+            </label>
+            <div class="col-3">
+              <input
+                type="number"
+                class="form-control text-end"
+                name="saldoValid"
+                id="inputSaldoValid"
+                min="0"
+                required
+                value="7" />
+            </div>
+            <div class="col-4">Dagen</div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputLastenValid" class="col-4 col-form-label"
+              >Onbetaalde transacties</label
+            >
+            <div class="col-3">
+              <input
+                type="number"
+                class="form-control text-end"
+                name="lastenValid"
+                id="inputLastenValid"
+                required
+                min="0"
+                value="7" />
+            </div>
+            <div class="col-3">Dagen</div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputOudeItems" class="col-4 col-form-label"
+              >Toon oude transacties</label
+            >
+            <div class="col-3">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="inputOudeItems"
+                  name="showOldItems"
+                  value="1" />
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputshowHiddenItems" class="col-4 col-form-label"
+              >Toon genegeerde transacties</label
+            >
+            <div class="col-6">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="inputshowHiddenItems"
+                  name="showHiddenItems"
+                  value="1" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-primary-subtle flex-nowrap p-0">
+          <button
+            type="button"
+            class="d-none btn btn-lg btn-outline-danger fs-6 text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+            id="verwijderConfig">
+            Verwijderen
+          </button>
+          <button
+            type="button"
+            class="d-none btn btn-lg btn-outline-primary fs-6 text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+            id="opzettenConfig">
+            Opzetten
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-lg btn-outline-secondary ms-auto fs-6 text-decoration-none col-2 border-start py-3 m-0 border-0 rounded-0 border-start"
+            data-bs-dismiss="modal">
+            Annuleren
+          </button>
+          <button
+            type="submit"
+            class="btn btn-lg strong btn-outline-success fs-6 text-decoration-none border-start col-2 py-3 m-0 border-0 rounded-0 border-start">
+            Opslaan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div
+id="newSetupModal"
+class="modal fade"
+tabindex="-1"
+aria-labelledby="newSetupModalLabel"
+data-bs-backdrop="static"
+aria-hidden="true">
+<div
+  class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-content rounded-3 border border-3">
+    <div class="modal-header bg-primary-subtle">
+      <h1 class="modal-title fs-5" id="newSetupModalLabel">
+        Start uw eigen budget plan met BudgetKnip.
+      </h1>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"></button>
+    </div>
+    <div class="modal-body text-center">
+      <p>
+        U staat op het punt uw eigen transactie's voor het eerst op te
+        slaan.<br />
+        Hiervoor kunt u gebruik maken van de huidige transacties of
+        alle transacries zelf in voeren.
+      </p>
+      <p class="mb-0 alert alert-info">
+        Wat u ook kiest uw gegevens worden veilig op deze computer
+        bewaard. <br>
+        Er wordt niets gedeeld met LumenSoft of andere partijen.
+      </p>
+    </div>
+    <div class="modal-footer flex-nowrap bg-primary-subtle p-0">
+      <button
+        type="button"
+        data-bs-dismiss="modal"
+        id="copyTransacties"
+        class="btn btn-lg btn-outline-success fs-6 text-decoration-none col-3 border-start py-3 m-0 border-0 rounded-0">
+        Kopie transactie
+      </button>
+      <button
+        type="button"
+        id="nieuweTransacties"
+        class="btn btn-lg btn-outline-success fs-6 text-decoration-none border-start col-3 py-3 m-0 border-0 rounded-0"
+        data-bs-dismiss="modal">
+        Zelf invoeren
+      </button>
+    </div>
+  </div>
+</div>
+</div>

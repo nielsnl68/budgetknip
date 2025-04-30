@@ -1,0 +1,103 @@
+<div
+  id="bankSaldoModel"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="bankSaldoModelLabel"
+  data-bs-backdrop="static"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 border border-3">
+      <div class="modal-header bg-danger-subtle">
+        <h1 class="modal-title fs-5" id="bankSaldoModelLabel">
+          Huidige banksaldo invullen.
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <form id="bankSaldoForm">
+        <div class="modal-body">
+          <p class="mb-3 text-center">
+            Vul hier het huidige banksaldo in afkomstig van je bank-app.
+          </p>
+
+          <div class="form-floating">
+            <input
+              type="number"
+              inputmode="decimal"
+              name="bankSaldo"
+              class="form-control text-end"
+              step=".01"
+              id="inputBankSaldo"
+              required />
+            <label for="inputBankSaldo">Nieuw banksaldo</label>
+          </div>
+        </div>
+        <div id="extendedBankSaldo" class="modal-body pt-0 collapse">
+          <div class="mb-3 form-floating" id="divbankDatum">
+            <input
+              type="date"
+              name="bankDatum"
+              class="form-control"
+              id="inputbankDatum" />
+            <label for="inputbankDatum">bankDatum</label>
+          </div>
+          <div class="mb-0" id="divPaymentlist">
+            <select
+              class="form-select custom-select"
+              size="4"
+              name="payments"
+              id="selectPayments"
+              readonly
+              aria-label="Rekeningen ter betaling"
+              multiple>
+              <option value="0"
+                >Open this select menu
+                <span class="float-end text-danger"> 234.99</span></option
+              >
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <div class="form-check text-start">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="x"
+                id="checkAllPayments"
+                name="AllPayments" />
+              <label class="form-check-label" for="checkAllPayments">
+                Toon alle transacties
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-danger-subtle flex-nowrap p-0">
+          <button
+            class="btn link-body-emphasis ms-3 me-auto dropdown-toggle"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#extendedBankSaldo"
+            aria-expanded="false"
+            aria-controls="extendedBankSaldo">
+            Uitvouwen
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-lg btn-outline-secondary fs-6 text-decoration-none col-3 py-3 m-0 rounded-0 border-0 border-start"
+            data-bs-dismiss="modal">
+            Annuleren
+          </button>
+          <button
+            type="submit"
+            class="btn btn-lg strong btn-outline-success fs-6 text-decoration-none col-3 py-3 m-0 rounded-0 border-0 border-start">
+            Verwerking
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

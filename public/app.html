@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="nl" class="h-100" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>BudgetKnip</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="./css/budgetknip.css" />
+  </head>
+
+  <body id="page-top" class="d-flex flex-column h-100">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16" />
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path
+          d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
+        <path
+          d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z" />
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+      </symbol>
+    </svg>
+
+    <!-- Navigation -->
+    <header>
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary bg-lumensoft fixed-top border-bottom border-primary border-4"
+        data-bs-theme="dark"
+        id="mainNav">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <a class="navbar-brand fs-2" href="#page-top">
+                <img
+                  loading="eager"
+                  decoding="async"
+                  src="images/logo-text.png"
+                  alt="LumenSoft NL"
+                  width="280"
+                  height="54"
+                  class="pb-2" />
+                <span class="align-bottom"
+                  >&nbsp;-&nbsp;<b>B</b>udget<b>K</b>nip</span
+                >
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <div
+                class="navbar-nav navbar-nav-scroll nav-underline justify-content-end">
+                <a class="nav-link" href="index.html#intro">Intro</a>
+                <a class="nav-link" href="index.html#instructions"
+                  >Instructies</a
+                >
+                <a class="nav-link active" href="app.html#demo">App</a>
+                <button
+                    class="nav-link"
+                    id="bd-theme"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Toggle theme (auto)">
+                    <i id="bd-theme-icon" class="bi bi-sun-fill"></i>
+                    <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+                  </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="app">
+      <!-- demo mode alert -->
+      <div id="AlertPlaceholder" class="container-fluid pb-0"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card">
+              <div
+                class="card-header bg-primary-subtle py-0 pe-0 d-flex justify-content-between">
+                <h1 class="card-title pt-2 mt-1 fs-5 text-primary">
+                  Transactie overzicht
+                </h1>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary border-0 border-start rounded-0 btn-lg py-2 m-0 ms-auto"
+                  aria-expanded="false"
+                  data-bs-whatever="-1"
+                  data-bs-toggle="modal"
+                  data-bs-target="#transactieModal">
+                  <i class="bi bi-calendar-plus-fill"></i>
+                  <span class="visually-hidden">transactie toevoegen</span>
+                </button>
+              </div>
+              <div class="card-scroller overflow-auto tableFixHead">
+                <table
+                  id="transacties"
+                  class="table table-hover table-borderless table-sm text-body">
+                  <tbody id="transactieLijstBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card mb-3">
+              <div
+                class="card-header bg-primary-subtle py-0 pe-0 d-flex justify-content-between">
+                <h1 class="card-title pt-2 mt-1 fs-5 text-primary">
+                  Totaal baten & lasten overzicht deze maand
+                </h1>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary border-0 border-start rounded-0 btn-lg py-2 m-0"
+                  aria-expanded="false"
+                  data-bs-toggle="modal"
+                  data-bs-target="#configModal">
+                  <i class="bi bi-gear-fill"></i>
+                  <span class="visually-hidden">Instellingen aanpassen</span>
+                </button>
+              </div>
+
+              <ul class="list-group list-group-flush budget">
+                <li class="list-group-item border-0 py-1">
+                  Totaal te ontvangen bedrag
+                  <span id="baten" class="text-end float-end">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Totaal uit te geven kosten
+                  <span id="lasten" class="text-end float-end">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  <strong>
+                    Totaal besteedbare bedrag
+                    <span id="batenLasten" class="text-end float-end"
+                      >0.00</span
+                    ></strong
+                  >
+                </li>
+                <li class="list-group-item border-0 pt-1">
+                  <strong>
+                    Besteedbaar per week
+                    <span id="calcPerWeek" class="text-end float-end">0.00</span
+                  ></strong>
+                </li>
+              </ul>
+            </div>
+            <div class="card">
+              <div
+                class="card-header bg-primary-subtle py-0 pe-0 d-flex justify-content-between">
+                <h1 class="card-title pt-2 mt-1 fs-5 text-primary">
+                  Werkelijke budget berekening
+                </h1>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary border-0 border-start rounded-0 btn-lg py-2 m-0"
+                  aria-expanded="false"
+                  data-bs-toggle="modal"
+                  data-bs-target="#bankSaldoModel">
+                  <i class="bi bi-currency-exchange"></i>
+                  <span class="visually-hidden">Banksaldo invoeren</span>
+                </button>
+              </div>
+
+              <ul
+                class="list-group list-group-flush d-none budget"
+                id="BankSaldo">
+                <li class="list-group-item border-0 py-1">
+                  Banksaldo op <span id="saldoDate"></span>
+                  <span id="saldo" class="text-end ms-auto">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Uitgevoerde transacties
+                  <span id="uitgevoerd" class="text-end float-end">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Verwachte uitgaven
+                  <span id="uitgaven" class="text-end float-end">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Verwachte Inkomsten
+                  <span id="inkomsten" class="text-end float-end">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Prive uitgaven
+                  <span id="privateUitgaven" class="text-end float-end"
+                    >0.00</span
+                  >
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  <strong>
+                    Werkelijk besteedbaar
+                    <span id="besteedbaar" class="text-end float-end"></span
+                  ></strong>
+                </li>
+                <li class="list-group-item border-0 pt-1">
+                  <strong>
+                    Week budget
+                    <span id="weekBudget" class="text-end float-end"></span
+                  ></strong>
+                </li>
+              </ul>
+              <div class="card-body text-danger d-none" id="noBankSaldo">
+                <figure class="text-center">
+                  <blockquote class="blockquote">
+                    <p>
+                      Het banksaldo is nog niet ingevuld of is verouderd. <br />
+                      Voer uw huidige banksaldo in.
+                    </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                    Klik op de <i class="bi bi-currency-exchange"></i> hierboven om de
+                    banksaldo in te geven.
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="footer fixed-bottom py-1 bg-body-tertiary border-top border-secondary-subtle">
+      <div class="container">
+        <p class="m-0 text-body-secondary">
+          Copyright &copy; <b>L</b>umen<b>S</b>oft 2025
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- bewaar veranderingen model -->
+    <div
+      id="newSetupModal"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="newSetupModalLabel"
+      data-bs-backdrop="static"
+      aria-hidden="true">
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content rounded-3 border border-3">
+          <div class="modal-header bg-primary-subtle">
+            <h1 class="modal-title fs-5" id="newSetupModalLabel">
+              Start uw eigen budget plan met BudgetKnip.
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>
+              U staat op het punt uw eigen transactie's voor het eerst op te
+              slaan.<br />
+              Hiervoor kunt u gebruik maken van de huidige transacties of
+              alle transacries zelf in voeren.
+            </p>
+            <p class="mb-0 alert alert-info">
+              Wat u ook kiest uw gegevens worden veilig op deze computer
+              bewaard. <br>
+              Er wordt niets gedeeld met LumenSoft of andere partijen.
+            </p>
+          </div>
+          <div class="modal-footer flex-nowrap bg-primary-subtle p-0">
+            <button
+              type="button"
+              data-bs-dismiss="modal"
+              id="copyTransacties"
+              class="btn btn-lg btn-outline-success fs-6 text-decoration-none col-3 border-start py-3 m-0 border-0 rounded-0">
+              Kopie transactie
+            </button>
+            <button
+              type="button"
+              id="nieuweTransacties"
+              class="btn btn-lg btn-outline-success fs-6 text-decoration-none border-start col-3 py-3 m-0 border-0 rounded-0"
+              data-bs-dismiss="modal">
+              Zelf invoeren
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transactie model -->
+    <div
+      id="transactieModal"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="transactieModalLabel"
+      data-bs-backdrop="static"
+      aria-hidden="true">
+      <div
+        class="modal-dialog modal-fullscreen-lg-down modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header bg-primary-subtle">
+            <h1 class="modal-title fs-5" id="transactieModalLabel">
+              Transactie invoeren
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <form id="transactieForm" class="needs-validation" novalidate>
+            <div class="modal-body">
+              <div class="row mb-3">
+                <label for="inputDiscription" class="col-3 col-form-label"
+                  >Omschrijving</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputDiscription"
+                    name="title"
+                    required />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputAmount" class="col-3 col-form-label"
+                  >Bedrag</label
+                >
+                <div class="col-4">
+                  <div class="input-group">
+                    <input
+                      type="number"
+                      inputmode="decimal"
+                      name="amount"
+                      class="form-control text-end"
+                      step=".01"
+                      id="inputAmount"
+                      value="0.00"
+                      required />
+                    <input
+                      type="radio"
+                      class="btn-check updateStartItem"
+                      name="direction"
+                      id="inputDirectionInput"
+                      value="in"
+                      checked />
+                    <label
+                      class="btn btn-outline-success col-auto"
+                      for="inputDirectionInput"
+                      aria-label="Inkomsten"
+                      ><i class="bi bi-box-arrow-in-right"></i
+                    ></label>
+
+                    <input
+                      type="radio"
+                      class="btn-check updateStartItem"
+                      name="direction"
+                      id="inputDirectionOutput"
+                      value="uit" />
+                    <label
+                      class="btn btn-outline-danger col-auto"
+                      for="inputDirectionOutput"
+                      aria-label="Uit te geven bedrag"
+                      ><i class="bi bi-box-arrow-right"></i
+                    ></label>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputlastPayment" class="col-3 col-form-label"
+                  >Vorige transactie datum</label
+                >
+                <div class="col-3">
+                  <input
+                    type="date"
+                    class="form-control text-end"
+                    name="startDate"
+                    id="inputlastPayment"
+                    required />
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputfinalPayment" class="col-3 col-form-label">
+                  Laatste transactie datum
+                </label>
+                <div class="col-3">
+                  <input
+                    type="date"
+                    class="form-control text-end"
+                    name="finalPayment"
+                    id="inputfinalPayment" />
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputFrequentie" class="col-3 col-form-label">
+                  Frequentie
+                </label>
+                <div class="col-7">
+                  <div class="input-group row">
+                    <select
+                      class="form-select updateStartItem col-8"
+                      id="inputFrequentie"
+                      name="times"
+                      aria-label="Select frequentie">
+                      <option selected value="1">Per maand</option>
+                      <option value="2">Per 2 maanden</option>
+                      <option value="3">Per kwartaal</option>
+                      <option value="4">Per half jaar</option>
+                      <option value="5">Per jaar</option>
+                      <option value="6">Per week of aantal weken</option>
+                    </select>
+                    <input
+                      type="number"
+                      class="form-control text-end d-none col-4"
+                      id="inputWeeks"
+                      name="weeks"
+                      min="1"
+                      max="52"
+                      required
+                      value="1"
+                      aria-label="Aantal weken"
+                      placeholder="Aantal weken" />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-1 row">
+                <label for="inputTacticBudget" class="col-3 col-form-label"
+                  >Verwerkingstactiek</label
+                >
+                <div class="col-9">
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      class="form-check-input updateStartItem"
+                      name="tactic"
+                      id="inputTacticBudget"
+                      value="0"
+                      checked />
+                    <label class="form-check-label" for="inputTacticBudget"
+                      >In budget</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      class="form-check-input updateStartItem"
+                      name="tactic"
+                      id="inputTacticDirect"
+                      value="1" />
+                    <label class="form-check-label" for="inputTacticDirect"
+                      >Vrije uitgaven</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      class="form-check-input updateStartItem"
+                      name="tactic"
+                      id="inputTacticStash"
+                      value="2" />
+                    <label class="form-check-label" for="inputTacticStash"
+                      >Sparen</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      class="form-check-input updateStartItem"
+                      name="tactic"
+                      id="inputTacticIgnore"
+                      value="-1" />
+                    <label class="form-check-label" for="inputTacticIgnore"
+                      >Negeren</label
+                    >
+                  </div>
+                </div>
+                <div class="col-9 offset-3">
+                  <div class="form-check form-switch" id="startItemDiv">
+                    <input
+                      class="form-check-input updateStartItem"
+                      type="checkbox"
+                      role="switch"
+                      id="inputStartItem"
+                      name="startitem"
+                      value="1" />
+                    <label class="form-check-label" for="inputStartItem"
+                      >Financiële maand begint met deze transactie.</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer bg-primary-subtle flex-nowrap p-0">
+              <button
+                type="button"
+                disabled
+                class="btn btn-lg btn-outline-danger fs-6 me-auto text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+                id="verwijderTransactie">
+                Verwijderen
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-lg btn-outline-secondary fs-6 text-decoration-none col-2 border-start py-3 m-0 border-0 rounded-0"
+                data-bs-dismiss="modal">
+                Annuleren
+              </button>
+              <button
+                type="submit"
+                class="btn btn-lg strong btn-outline-success fs-6 text-decoration-none border-start col-2 py-3 m-0 border-0 rounded-0">
+                Opslaan
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- fill Banksaldo model-->
+    <div
+      id="bankSaldoModel"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="bankSaldoModelLabel"
+      data-bs-backdrop="static"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 border border-3">
+          <div class="modal-header bg-danger-subtle">
+            <h1 class="modal-title fs-5" id="bankSaldoModelLabel">
+              Huidige banksaldo invullen.
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <form id="bankSaldoForm">
+            <div class="modal-body">
+              <p class="mb-3 text-center">
+                Vul hier het huidige banksaldo in afkomstig van je bank-app.
+              </p>
+
+              <div class="form-floating">
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  name="bankSaldo"
+                  class="form-control text-end"
+                  step=".01"
+                  id="inputBankSaldo"
+                  required />
+                <label for="inputBankSaldo">Nieuw banksaldo</label>
+              </div>
+            </div>
+            <div id="extendedBankSaldo" class="modal-body pt-0 collapse">
+              <div class="mb-3 form-floating" id="divbankDatum">
+                <input
+                  type="date"
+                  name="bankDatum"
+                  class="form-control"
+                  id="inputbankDatum" />
+                <label for="inputbankDatum">bankDatum</label>
+              </div>
+              <div class="mb-0" id="divPaymentlist">
+                <select
+                  class="form-select custom-select"
+                  size="4"
+                  name="payments"
+                  id="selectPayments"
+                  readonly
+                  aria-label="Rekeningen ter betaling"
+                  multiple>
+                  <option value="0"
+                    >Open this select menu
+                    <span class="float-end text-danger"> 234.99</span></option
+                  >
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="form-check text-start">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="x"
+                    id="checkAllPayments"
+                    name="AllPayments" />
+                  <label class="form-check-label" for="checkAllPayments">
+                    Toon alle transacties
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer bg-danger-subtle flex-nowrap p-0">
+              <button
+                class="btn link-body-emphasis ms-3 me-auto dropdown-toggle"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#extendedBankSaldo"
+                aria-expanded="false"
+                aria-controls="extendedBankSaldo">
+                Uitvouwen
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-lg btn-outline-secondary fs-6 text-decoration-none col-3 py-3 m-0 rounded-0 border-0 border-start"
+                data-bs-dismiss="modal">
+                Annuleren
+              </button>
+              <button
+                type="submit"
+                class="btn btn-lg strong btn-outline-success fs-6 text-decoration-none col-3 py-3 m-0 rounded-0 border-0 border-start">
+                Verwerking
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuratie model-->
+    <div
+      id="configModal"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="configModalLabel"
+      data-bs-backdrop="static"
+      aria-hidden="true">
+      <div
+        class="modal-dialog modal-fullscreen-lg-down modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header bg-primary-subtle">
+            <h1 class="modal-title fs-5" id="configModalLabel">
+              Configuratie aanpassen
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <form id="configForm" class="needs-validation" novalidate>
+            <input type="hidden" name="volgende_ID" />
+            <input type="hidden" name="bankSaldo" />
+            <input type="hidden" name="bankDatum" />
+            <input type="hidden" name="beginDatum" />
+
+            <div class="modal-body">
+              <div class="row mb-3 d-none">
+                <label for="inputstartOfMaand" class="col-4 col-form-label"
+                  >Start financieele maand</label>
+                <div class="col-sm-7">
+                  <select
+                    class="form-select"
+                    id="inputstartOfMaand"
+                    name="startOfMaand"
+                    aria-label="Select frequentie">
+                    <option value="2">Eerste maandag van de maand</option>
+                    <option value="1" selected>Eerste dag van de maand</option>
+                    <option value="0">Opgeven in de transactie</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputDagenPerMaand" class="col-4 col-form-label"
+                  >Berekening bedrag p/dag</label
+                >
+                <div class="col-sm-7">
+                  <select
+                    class="form-select"
+                    id="inputDagenPerMaand"
+                    name="dagenPerMaand"
+                    aria-label="Select frequentie">
+                    <option selected value="0">
+                      Gebasseerd op 31 dagen per maand
+                    </option>
+                    <option value="1">
+                      Gebasseerd op werkelijke dagen per maand
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputBeginSaldo" class="col-4 col-form-label"
+                  >Begin Saldo</label
+                >
+                <div class="col-3">
+                  <input
+                    type="number"
+                    inputmode="decimal"
+                    name="beginSaldo"
+                    class="form-control text-end"
+                    step=".01"
+                    id="inputBeginSaldo"
+                    value="0.00"
+                    required />
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputSaldoValid" class="col-4 col-form-label"
+                  >Geldigheid banksaldo
+                </label>
+                <div class="col-3">
+                  <input
+                    type="number"
+                    class="form-control text-end"
+                    name="saldoValid"
+                    id="inputSaldoValid"
+                    min="0"
+                    required
+                    value="7" />
+                </div>
+                <div class="col-4">Dagen</div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputLastenValid" class="col-4 col-form-label"
+                  >Onbetaalde transacties</label
+                >
+                <div class="col-3">
+                  <input
+                    type="number"
+                    class="form-control text-end"
+                    name="lastenValid"
+                    id="inputLastenValid"
+                    required
+                    min="0"
+                    value="7" />
+                </div>
+                <div class="col-3">Dagen</div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputOudeItems" class="col-4 col-form-label"
+                  >Toon oude transacties</label
+                >
+                <div class="col-3">
+                  <div class="form-check form-switch">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="inputOudeItems"
+                      name="showOldItems"
+                      value="1" />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputshowHiddenItems" class="col-4 col-form-label"
+                  >Toon genegeerde transacties</label
+                >
+                <div class="col-6">
+                  <div class="form-check form-switch">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="inputshowHiddenItems"
+                      name="showHiddenItems"
+                      value="1" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer bg-primary-subtle flex-nowrap p-0">
+              <button
+                type="button"
+                class="d-none btn btn-lg btn-outline-danger fs-6 text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+                id="verwijderConfig">
+                Verwijderen
+              </button>
+              <button
+                type="button"
+                class="d-none btn btn-lg btn-outline-primary fs-6 text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+                id="opzettenConfig">
+                Opzetten
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-lg btn-outline-secondary ms-auto fs-6 text-decoration-none col-2 border-start py-3 m-0 border-0 rounded-0 border-start"
+                data-bs-dismiss="modal">
+                Annuleren
+              </button>
+              <button
+                type="submit"
+                class="btn btn-lg strong btn-outline-success fs-6 text-decoration-none border-start col-2 py-3 m-0 border-0 rounded-0 border-start">
+                Opslaan
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="logobar"></div>
+
+    <div
+      class="dropdown position-fixed pt-3 top-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <ul
+        class="dropdown-menu dropdown-menu-end shadow"
+        aria-labelledby="bd-theme-text">
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="light"
+            aria-pressed="false">
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#sun-fill"></use>
+            </svg>
+            Light
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="dark"
+            aria-pressed="false">
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#moon-stars-fill"></use>
+            </svg>
+            Dark
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center active"
+            data-bs-theme-value="auto"
+            aria-pressed="true">
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#circle-half"></use>
+            </svg>
+            Auto
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@js-joda/core@5.6.4/dist/js-joda.js"></script>
+    <script src="./js/app.js" type="module" crossorigin="anonymous"></script>
+  </body>
+</html>
