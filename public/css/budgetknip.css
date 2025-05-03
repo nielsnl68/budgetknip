@@ -22,7 +22,7 @@
   height: 320px;
   width: 151px;
   content: "";
-  background: url(../images/lumensoft_bloks.svg);
+  background: url(../images/my_bloks.svg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   z-index: 3004;
@@ -35,7 +35,7 @@
   left: 0px;
   width: 151px;
   content: "";
-  background: url(../images/lumensoft_lines.svg);
+  background: url(../images/my_lines.svg);
   background-repeat: repeat-y;
   background-origin: border-box;
   background-attachment: fixed;
