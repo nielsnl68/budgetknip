@@ -1,11 +1,17 @@
 /*jshint esversion: 10 */
 "use strict";
+import { configData, removeSettings, storeSetting } from "./configData.js";
+import { fillList } from "./transactieLijst.js";
+import { writeTable } from "./filltables.js";
 
 export const main = {
   lijst: "transactieLijstBody",
   baten: "baten",
   lasten: "lasten",
-  batenLasten: "batenLasten",
+  spaarBedrag: "spaarBedrag",
+  directBeschikbaar: "directBeschikbaar",
+
+  totaalBeschikbaar: "totaalBeschikbaar",
   calcPerWeek: "calcPerWeek",
 
   noBankSaldo: "noBankSaldo",
@@ -13,6 +19,7 @@ export const main = {
 
   bankSaldo: "saldo",
   bankDatum: "saldoDate",
+  berekendSaldo: "berekendSaldo",
 
   uitgevoerd: "uitgevoerd",
   uitgaven: "uitgaven",
@@ -22,16 +29,22 @@ export const main = {
   weekBudget: "weekBudget",
 
   demoModeAlert: "demoModeAlert",
-}
 
-export const config = {
-  modal: "configModal",
-  form: "configForm",
   verwijder: "verwijderConfig",
   opzetten : "opzettenConfig",
   newSetupModal: "newSetupModal",
   kopie : "copyTransacties",
   nieuw : "nieuweTransacties",
+
+  stopDivider: "stopDivider",
+  startDivider : "startDivider",
+}
+
+export const config = {
+  modal: "configModal",
+  form: "configForm",
+
+
 };
 export const transactie ={
   modal: "transactieModal",
@@ -54,7 +67,7 @@ export const bankSaldo = {
 
   BankSaldo: "inputBankSaldo",
   bankDatum: "inputbankDatum",
-  Payments: "selectPayments",
+  listPayments: "listPayments",
 };
 
 async function includeHTML() {
@@ -143,5 +156,50 @@ export function initModals() {
 
   setupThemeSupport();
   handleModalFocus();
+
+  if (typeof Storage !== "undefined") {
+    if (localStorage._lijst) {
+      main.opzetten.parentElement.classList.add("d-none");
+      main.startDivider.classList.add("d-none");
+      main.verwijder.parentElement.classList.remove("d-none");
+      main.stopDivider.classList.remove("d-none");
+    } else {
+      main.opzetten.parentElement.classList.remove("d-none");
+      main.startDivider.classList.remove("d-none");
+      main.verwijder.parentElement.classList.add("d-none");
+      main.stopDivider.classList.add("d-none");
+    }
+  }
+
+  main.verwijder.addEventListener("click", (event) => {
+    if (
+      confirm(
+        "Wilt u de huidige configuratie werkelijk verwijderen?\nWanneer u dit doet dan worden de Preview data opnieuw getoond."
+      )
+    ) {
+      removeSettings();
+      location.reload();
+    }
+  });
+
+  main.kopie.addEventListener("click", (event) => {
+    storeSetting(true);
+    writeTable();
+  });
+
+  main.nieuw.addEventListener("click", (event) => {
+    if (
+      !sessionStorage._lijst ||
+      confirm("Weet u zeker dat u de huidige wijziging die u al heeft gemaakt wilt vervangen?")
+    ) {
+
+      configData.volgende_ID = 0;
+      fillList([]);
+
+      storeSetting(true);
+      writeTable();
+      new bootstrap.Modal(transactie.modal, {}).show();
+    }
+  });
 
 }

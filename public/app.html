@@ -89,15 +89,16 @@
                 >
                 <a class="nav-link active" href="app.html#demo">App</a>
                 <button
-                    class="nav-link"
-                    id="bd-theme"
-                    type="button"
-                    aria-expanded="false"
-                    aria-label="Toggle theme (auto)">
-                    <i id="bd-theme-icon" class="bi bi-sun-fill"></i>
-                    <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-                  </button>
-
+                  class="nav-link"
+                  id="bd-theme"
+                  type="button"
+                  aria-expanded="false"
+                  aria-label="Toggle theme (auto)">
+                  <i id="bd-theme-icon" class="bi bi-sun-fill"></i>
+                  <span class="visually-hidden" id="bd-theme-text"
+                    >Toggle theme</span
+                  >
+                </button>
               </div>
             </div>
           </div>
@@ -141,17 +142,65 @@
               <div
                 class="card-header bg-primary-subtle py-0 pe-0 d-flex justify-content-between">
                 <h1 class="card-title pt-2 mt-1 fs-5 text-primary">
-                  Totaal baten & lasten overzicht deze maand
+                  Totaal overzicht deze maand
                 </h1>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary border-0 border-start rounded-0 btn-lg py-2 m-0"
-                  aria-expanded="false"
-                  data-bs-toggle="modal"
-                  data-bs-target="#configModal">
-                  <i class="bi bi-gear-fill"></i>
-                  <span class="visually-hidden">Instellingen aanpassen</span>
-                </button>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-outline-primary border-0 border-start rounded-0 btn-lg py-2 m-0"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                    <span class="visually-hidden">Instellingen menu</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="d-none"
+                      ><button
+                        class="dropdown-item text-success"
+                        type="button"
+                        id="opzettenConfig"
+                        aria-expanded="false"
+                        data-bs-toggle="modal"
+                        data-bs-target="#newSetupModal"
+                        >Start uw BudgetKnip</button
+                      ></li
+                    >
+                    <li id="startDivider" class="d-none"
+                      ><hr class="dropdown-divider"
+                    /></li>
+                    <li
+                      ><button class="dropdown-item" type="button" disabled
+                        >Uw gegevens bewaren</button
+                      ></li
+                    >
+                    <li
+                      ><button class="dropdown-item" type="button" disabled
+                        >Uw gegeven herstellen</button
+                      ></li
+                    >
+                    <li><hr class="dropdown-divider" /></li>
+                    <li
+                      ><button
+                        class="dropdown-item"
+                        type="button"
+                        aria-expanded="false"
+                        data-bs-toggle="modal"
+                        data-bs-target="#configModal"
+                        >App Instellingen</button
+                      ></li
+                    >
+                    <li id="stopDivider" class="d-none"
+                      ><hr class="dropdown-divider"
+                    /></li>
+                    <li class="d-none">
+                      <button
+                        id="verwijderConfig"
+                        class="dropdown-item text-danger"
+                        type="button"
+                        >Gegevens Verwijderen</button>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
               <ul class="list-group list-group-flush budget">
@@ -160,24 +209,32 @@
                   <span id="baten" class="text-end float-end">0.00</span>
                 </li>
                 <li class="list-group-item border-0 py-1">
+                  Bedrag dat wordt gespaard
+                  <span id="spaarBedrag" class="text-end float-end">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Hiervan is direct beschikbaar
+                  <span id="directBeschikbaar" class="text-end float-end"
+                    >0.00</span
+                  >
+                </li>
+
+                <li class="list-group-item border-0 py-1">
                   Totaal uit te geven kosten
                   <span id="lasten" class="text-end float-end">0.00</span>
                 </li>
-                <li class="list-group-item border-0 py-1">
-                  <strong>
+
+                <li class="list-group-item border-0 py-1 strong">
                     Totaal besteedbare bedrag
-                    <span id="batenLasten" class="text-end float-end"
-                      >0.00</span
-                    ></strong
-                  >
-                </li>
-                <li class="list-group-item border-0 pt-1">
-                  <strong>
-                    Besteedbaar per week
-                    <span id="calcPerWeek" class="text-end float-end">0.00</span
-                  ></strong>
+                    <span id="totaalBeschikbaar" class="text-end float-end"
+                      >0.00</span>
                 </li>
               </ul>
+              <div class="card-footer budget strong">
+                  Besteedbaar per week
+                  <span id="calcPerWeek" class="text-end float-end"
+                    >0.00</span>
+            </div>
             </div>
             <div class="card">
               <div
@@ -195,13 +252,23 @@
                   <span class="visually-hidden">Banksaldo invoeren</span>
                 </button>
               </div>
-
-              <ul
-                class="list-group list-group-flush d-none budget"
-                id="BankSaldo">
+              <ul class="list-group list-group-flush budget" id="BankSaldo">
+                <li
+                  class="list-group-item list-group-item-danger fw-medium"
+                  id="noBankSaldo"
+                  >Het banksaldo is nog niet ingevuld of is verouderd.
+                  <span class="ms-auto fw-light text-body-secondary"
+                    >Klik op de
+                    <i class="bi bi-currency-exchange"></i> hierboven.</span
+                  >
+                </li>
                 <li class="list-group-item border-0 py-1">
                   Banksaldo op <span id="saldoDate"></span>
                   <span id="saldo" class="text-end ms-auto">0.00</span>
+                </li>
+                <li class="list-group-item border-0 py-1">
+                  Berekend banksaldo
+                  <span id="berekendSaldo" class="text-end ms-auto">0.00</span>
                 </li>
                 <li class="list-group-item border-0 py-1">
                   Uitgevoerde transacties
@@ -218,35 +285,16 @@
                 <li class="list-group-item border-0 py-1">
                   Prive uitgaven
                   <span id="privateUitgaven" class="text-end float-end"
-                    >0.00</span
-                  >
+                    >0.00</span>
                 </li>
-                <li class="list-group-item border-0 py-1">
-                  <strong>
+                <li class="list-group-item border-0 py-1 strong">
                     Werkelijk besteedbaar
-                    <span id="besteedbaar" class="text-end float-end"></span
-                  ></strong>
-                </li>
-                <li class="list-group-item border-0 pt-1">
-                  <strong>
-                    Week budget
-                    <span id="weekBudget" class="text-end float-end"></span
-                  ></strong>
+                    <span id="besteedbaar" class="text-end float-end"></span>
                 </li>
               </ul>
-              <div class="card-body text-danger d-none" id="noBankSaldo">
-                <figure class="text-center">
-                  <blockquote class="blockquote">
-                    <p>
-                      Het banksaldo is nog niet ingevuld of is verouderd. <br />
-                      Voer uw huidige banksaldo in.
-                    </p>
-                  </blockquote>
-                  <figcaption class="blockquote-footer">
-                    Klik op de <i class="bi bi-currency-exchange"></i> hierboven om de
-                    banksaldo in te geven.
-                  </figcaption>
-                </figure>
+              <div class="card-footer budget strong">
+                Week budget
+                <span id="weekBudget" class="text-end float-end">0.00</span>
               </div>
             </div>
           </div>
@@ -290,12 +338,12 @@
             <p>
               U staat op het punt uw eigen transactie's voor het eerst op te
               slaan.<br />
-              Hiervoor kunt u gebruik maken van de huidige transacties of
-              alle transacries zelf in voeren.
+              Hiervoor kunt u gebruik maken van de huidige transacties of alle
+              transacries zelf in voeren.
             </p>
             <p class="mb-0 alert alert-info">
               Wat u ook kiest uw gegevens worden veilig op deze computer
-              bewaard. <br>
+              bewaard. <br />
               Er wordt niets gedeeld met LumenSoft of andere partijen.
             </p>
           </div>
@@ -527,7 +575,7 @@
               <button
                 type="button"
                 disabled
-                class="btn btn-lg btn-outline-danger fs-6 me-auto text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
+                class="btn btn-lg btn-outline-danger fs-6 me-auto text-decoration-none col-2 d-none border-end py-3 m-0 border-0 rounded-0"
                 id="verwijderTransactie">
                 Verwijderen
               </button>
@@ -559,7 +607,7 @@
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-3 border border-3">
-          <div class="modal-header bg-danger-subtle">
+          <div class="modal-header bg-primary-subtle">
             <h1 class="modal-title fs-5" id="bankSaldoModelLabel">
               Huidige banksaldo invullen.
             </h1>
@@ -571,72 +619,80 @@
           </div>
           <form id="bankSaldoForm">
             <div class="modal-body">
-              <p class="mb-3 text-center">
-                Vul hier het huidige banksaldo in afkomstig van je bank-app.
+              <p class="mb-3 text-center d-none">
+                Vul hieronder uw huidige banksaldo in afkomstig van je bank-app.
               </p>
-
-              <div class="form-floating">
-                <input
-                  type="number"
-                  inputmode="decimal"
-                  name="bankSaldo"
-                  class="form-control text-end"
-                  step=".01"
-                  id="inputBankSaldo"
-                  required />
-                <label for="inputBankSaldo">Nieuw banksaldo</label>
-              </div>
-            </div>
-            <div id="extendedBankSaldo" class="modal-body pt-0 collapse">
-              <div class="mb-3 form-floating" id="divbankDatum">
-                <input
-                  type="date"
-                  name="bankDatum"
-                  class="form-control"
-                  id="inputbankDatum" />
-                <label for="inputbankDatum">bankDatum</label>
-              </div>
-              <div class="mb-0" id="divPaymentlist">
-                <select
-                  class="form-select custom-select"
-                  size="4"
-                  name="payments"
-                  id="selectPayments"
-                  readonly
-                  aria-label="Rekeningen ter betaling"
-                  multiple>
-                  <option value="0"
-                    >Open this select menu
-                    <span class="float-end text-danger"> 234.99</span></option
-                  >
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <div class="form-check text-start">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value="x"
-                    id="checkAllPayments"
-                    name="AllPayments" />
-                  <label class="form-check-label" for="checkAllPayments">
-                    Toon alle transacties
-                  </label>
+              <div class="mb-3 row">
+                <label for="inputBankSaldo" class="col-5 col-form-label">
+                  Uw huidige banksaldo
+                </label>
+                <div class="col-7">
+                  <div class="input-group">
+                    <input
+                      type="number"
+                      inputmode="decimal"
+                      name="bankSaldo"
+                      class="form-control text-end"
+                      step=".01"
+                      id="inputBankSaldo"
+                      placeholder="Bijvoorbeeld: 1200,00"
+                      aria-label="Huidige bank saldo"
+                      aria-describedby="button-addon2"
+                      required />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="button-addon2"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#divbankDatum"
+                      aria-expanded="false"
+                      aria-controls="divbankDatum">
+                      <i class="bi bi-calendar2-plus"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
+              <div class="mb-3 row collapse" id="divbankDatum">
+                <label for="inputbankDatum" class="col-5 col-form-label">
+                  Datum banksaldo
+                </label>
+                <div class="col-7">
+                  <input
+                    type="date"
+                    name="bankDatum"
+                    class="form-control"
+                    id="inputbankDatum" />
+                </div>
+              </div>
+              <div class="card mb-0 bg-body-secondary" id="divPaymentlist">
+                <ul
+                  id="listPayments"
+                  class="list-group budget list-group-flush overflow-y-auto p-0 mb-md-0 me-md-0">
+                  <li class="list-group-item">
+                    <input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      value=""
+                      id="firstCheckbox" />
+                    <label class="form-check-label" for="firstCheckbox"
+                      >First checkbox</label
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="form-check form-check-reverse d-none mb-0">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="x"
+                  id="checkAllPayments"
+                  name="AllPayments" />
+                <label class="form-check-label" for="checkAllPayments">
+                  Toon alle transacties
+                </label>
+              </div>
             </div>
-            <div class="modal-footer bg-danger-subtle flex-nowrap p-0">
-              <button
-                class="btn link-body-emphasis ms-3 me-auto dropdown-toggle"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#extendedBankSaldo"
-                aria-expanded="false"
-                aria-controls="extendedBankSaldo">
-                Uitvouwen
-              </button>
-
+            <div class="modal-footer bg-primary-subtle flex-nowrap p-0">
               <button
                 type="button"
                 class="btn btn-lg btn-outline-secondary fs-6 text-decoration-none col-3 py-3 m-0 rounded-0 border-0 border-start"
@@ -684,7 +740,8 @@
             <div class="modal-body">
               <div class="row mb-3 d-none">
                 <label for="inputstartOfMaand" class="col-4 col-form-label"
-                  >Start financieele maand</label>
+                  >Start financieele maand</label
+                >
                 <div class="col-sm-7">
                   <select
                     class="form-select"
@@ -800,19 +857,6 @@
             <div class="modal-footer bg-primary-subtle flex-nowrap p-0">
               <button
                 type="button"
-                class="d-none btn btn-lg btn-outline-danger fs-6 text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
-                id="verwijderConfig">
-                Verwijderen
-              </button>
-              <button
-                type="button"
-                class="d-none btn btn-lg btn-outline-primary fs-6 text-decoration-none col-2 border-end py-3 m-0 border-0 rounded-0"
-                id="opzettenConfig">
-                Opzetten
-              </button>
-
-              <button
-                type="button"
                 class="btn btn-lg btn-outline-secondary ms-auto fs-6 text-decoration-none col-2 border-start py-3 m-0 border-0 rounded-0 border-start"
                 data-bs-dismiss="modal">
                 Annuleren
@@ -829,59 +873,6 @@
     </div>
 
     <div class="logobar"></div>
-
-    <div
-      class="dropdown position-fixed pt-3 top-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <ul
-        class="dropdown-menu dropdown-menu-end shadow"
-        aria-labelledby="bd-theme-text">
-        <li>
-          <button
-            type="button"
-            class="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="light"
-            aria-pressed="false">
-            <svg class="bi me-2 opacity-50" aria-hidden="true">
-              <use href="#sun-fill"></use>
-            </svg>
-            Light
-            <svg class="bi ms-auto d-none" aria-hidden="true">
-              <use href="#check2"></use>
-            </svg>
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            class="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="dark"
-            aria-pressed="false">
-            <svg class="bi me-2 opacity-50" aria-hidden="true">
-              <use href="#moon-stars-fill"></use>
-            </svg>
-            Dark
-            <svg class="bi ms-auto d-none" aria-hidden="true">
-              <use href="#check2"></use>
-            </svg>
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            class="dropdown-item d-flex align-items-center active"
-            data-bs-theme-value="auto"
-            aria-pressed="true">
-            <svg class="bi me-2 opacity-50" aria-hidden="true">
-              <use href="#circle-half"></use>
-            </svg>
-            Auto
-            <svg class="bi ms-auto d-none" aria-hidden="true">
-              <use href="#check2"></use>
-            </svg>
-          </button>
-        </li>
-      </ul>
-    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script

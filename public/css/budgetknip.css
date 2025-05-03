@@ -102,7 +102,7 @@ main > .container, header .container {
   box-shadow: 0 0 1rem hsl(100 30% 50%);
 }
 
-.budget>li span:last-of-type  {
+.budget>li span:last-of-type, .budget>li>label span:last-of-type, div.budget.card-footer span:last-of-type  {
   text-align: end !important;
   float: right !important;
 }
@@ -182,4 +182,14 @@ main > .container, header .container {
 
 .text-ds-wavy-red {
   text-decoration: line-through wavy var(--bs-secondary-color);
+}
+
+#divPaymentlist {
+  height: 144px;
+}
+
+#divPaymentlist .list-group-item {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
 }

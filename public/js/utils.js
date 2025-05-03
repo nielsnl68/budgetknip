@@ -34,10 +34,11 @@ export function nextWeek(current, dayOfWeek= null, incl= true) {
   return current.plusDays(dayOfWeek - old);
 }
 
-export function WeekNumber(testing) {
+export function weekNumber(testing) {
   let start = dayjs("2020-1-1").startOf("w");
   let finish = setDate(testing).endOf("w");
-  return start.diff(finish,"w");
+  return d1.until(d2, JSJoda.ChronoUnit.WEEKS);
+
 }
 
 

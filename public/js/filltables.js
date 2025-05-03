@@ -14,7 +14,7 @@ import {
 } from "./configData.js";
 
 export function writeTable(storeData = false) {
-  let LastenList = [];
+  let transacties = [];
 
   if (storeData) storeSetting();
 
@@ -31,95 +31,106 @@ export function writeTable(storeData = false) {
     document.getElementById("noBankSaldo").classList.remove("d-none");
     return;
   }
-
   for (let index = 0; index < transactieLijst.length; index++) {
+    transactieLijst[index].id = index
     let mLasten = new Transactie(transactieLijst[index]);
+
     if (configData.showHiddenItems == "0" && mLasten.tactic == -1) {
       continue; //
     }
     if (mLasten.startItem) {
       budgetData.firstItem = mLasten;
     }
-    LastenList.push(mLasten);
+
+    transacties.push(mLasten);
   }
+
   setFirstDate();
-  let size = LastenList.length;
+
+  let size = transacties.length;
   for (let index = 0; index < size; index++) {
-    let mLasten = LastenList[index];
-    let realDate;
-/*
+    let mLasten = transacties[index];
+    let realDate = mLasten.performDate; //.minusDays(1);
+    /* */
     if (
-     // mLasten.isBefore(configData.bankDatum) &&
-      mLasten.isBefore(budgetData.today) //.minusDays(configData.lastenValid)
+      (configData.bankDatum === null && realDate.isBefore(budgetData.today)) ||
+      (configData.bankDatum != null && realDate.isBefore(configData.bankDatum))
     ) {
+      //.minusDays(configData.lastenValid)
       mLasten.performDate = mLasten.nextDate();
-      mLasten.title += " N"
+      mLasten.debug += "N";
     }
-/* */
+
+    /* */
     realDate = mLasten.nextDate();
-    while (!realDate.isAfter(configData.nextPeriod)) {
+    while (!realDate.isAfter(budgetData.nextPeriod)) {
       let nItem = new Transactie(mLasten);
       nItem.performDate = realDate;
-      nItem.title += " A"
-      LastenList.push(nItem);
+      nItem.debug += " A";
+      transacties.push(nItem);
       realDate = nItem.nextDate();
     }
-/* */
-    // Zorg er voor dat alle transacties beschikbaar zijn voor de huidige week.
-    realDate = mLasten.performDate;
-    while (!mLasten.nextDate(realDate).isBefore(budgetData.thisWeek)) {
-
+    /*  */
+    // Zorg er voor dat alle transacties beschikbaar zijn voor de huidige maand.
+    realDate = mLasten.prevDate();
+    while (!mLasten.nextDate(realDate).isBefore(budgetData.startPeriod)) {
       let nItem = new Transactie(mLasten);
-      nItem.performDate = realDate.prevDate();
+      nItem.performDate = realDate;
 
-      if (configData.bankDatum != null && !realDate.isAfter(configData.bankDatum)) {
+      if (
+        configData.bankDatum != null &&
+        !realDate.isAfter(configData.bankDatum)
+      ) {
         nItem.cloned = 1;
-        nItem.title += " B1"
+        nItem.debug += "B1";
       } else if (realDate.isBefore(budgetData.startPeriod)) {
         nItem.cloned = 2;
-        nItem.title += " B2"
+        nItem.debug += "B2";
       } else {
-        nItem.title += " B0"
+        nItem.debug += "B0";
       }
-      LastenList.push(nItem);
+      transacties.push(nItem);
       realDate = nItem.prevDate();
     }
-/*  */
+    /*  */
   }
 
-  LastenList.sort(SortByDay);
-/*
-  for (let index = 0; index < LastenList.length; index++) {
-    let item = LastenList[index];
+  for (let index = 0; index < transacties.length; index++) {
+    let item = transacties[index];
 
     if (item.tactic == -1) {
-      if (configData.showHiddenItems == "0") {
-        LastenList.splice(index, 1);
-        index--;
-      }
       continue;
     }
 
     let myAmount = item.amount;
-
+    /* */
     if (
-      item.tactic <= 1 &&
       item.isBefore(budgetData.nextPeriod) &&
       !item.isBefore(budgetData.startPeriod)
     ) {
-      item.title += " *"
-      if (myAmount < 0) {
-        budgetData.lasten += myAmount;
-      } else {
-        budgetData.baten += myAmount;
+      item.debug += " *" + item.tactic;
+      switch (item.tactic) {
+        case 0:
+          if (myAmount < 0) {
+            budgetData.lasten += myAmount;
+          } else {
+            budgetData.baten += myAmount;
+          }
+          break;
+        case 1:
+          budgetData.directBeschikbaar += myAmount;
+          break;
+        case 2:
+          budgetData.spaarBedrag += myAmount;
       }
     }
+    /* */
 
     if (
-      item.cloned <= 1 &&
       configData.bankDatum != null &&
       item.isAfter(configData.bankDatum)
     ) {
+      item.debug += " &"
       if (!item.isAfter(budgetData.today)) {
         budgetData.uitgevoerd += myAmount;
       } else if (item.isBefore(budgetData.nextPeriod)) {
@@ -130,12 +141,15 @@ export function writeTable(storeData = false) {
         }
       }
     }
+    /* */
+
     if (
       item.tactic == 0 &&
       budgetData.nextWeek.isAfter(item.performDate) &&
       budgetData.thisWeek.isBefore(item.nextDate())
     ) {
-      let CalcInkomen = myAmount / item.daysBetween();
+      item.debug += " #"
+      let calcBedrag = myAmount / item.days();
 
       let tmp1 = item.performDate;
       //
@@ -146,27 +160,22 @@ export function writeTable(storeData = false) {
       let days = tmp1.until(tmp2, JSJoda.ChronoUnit.DAYS);
 
       if (!budgetData.today.isBefore(item.performDate)) {
-        days = item.daysBetween(false) + days;
+        days = item.days() + days;
       }
-      budgetData.weekValue += days * CalcInkomen;
+      budgetData.weekValue += days * calcBedrag;
 
       if (tmp1.isBefore(budgetData.thisWeek)) tmp1 = budgetData.thisWeek;
       days = tmp1.until(tmp2, JSJoda.ChronoUnit.DAYS);
       //Days.daysBetween(tmp1, tmp2).getDays();
-      budgetData.calcPerWeek += days * CalcInkomen;
+      budgetData.calcPerWeek += days * calcBedrag;
     }
-
-    if (configData.showOldItems == "0" && item.cloned != 0) {
-      LastenList.splice(index, 1);
-      index--;
-      continue;
-    }
+    /* */
   }
-  budgetData.list = LastenList;
+  budgetData.list = transacties;
 
   // configData.beginSaldo = configData.beginSaldo - budgetData.inkomen + budgetData.savings;
 
-  budgetData.batenLasten = budgetData.baten + budgetData.lasten;
+  budgetData.totaalBeschikbaar = budgetData.baten + budgetData.lasten;
   budgetData.calcPerDay = budgetData.calcPerWeek / 7;
 
   budgetData.weekBudget =
@@ -178,13 +187,13 @@ export function writeTable(storeData = false) {
   }
   if (budgetData.weekBudget < 0.0) budgetData.weekBudget = 0.0;
 
-  /*
+  /* */
   budgetData.calcPerWeek =
     ((budgetData.inkomen + budgetData.lasten) / budgetData.daysinmonth) * 7;
   budgetData.days = budgetData.today.until(budgetData.today).days();
   budgetData.weeknr = ~~(budgetData.days / 7.0) + 1;
 
-  if (!budgetData.noSaldo) {
+  //if (!budgetData.noSaldo) {
     budgetData.uitgegeven = -budgetData.lasten + budgetData.uitgaven;
     budgetData.privateUitgaven = -(
       budgetData.inkomen -
@@ -205,15 +214,41 @@ export function writeTable(storeData = false) {
     if (budgetData.weekBudget > budgetData.besteedbaar)
       budgetData.weekBudget = budgetData.besteedbaar;
     if (budgetData.weekBudget < 0.0) budgetData.weekBudget = 0.0;
-  }
-*/
+  //}
+/* */
+
+  transacties.push({
+    performDate: budgetData.today,
+    title: " Vandaag",
+    id: -1,
+    cloned: 0,
+  });
+  transacties.push({
+    performDate: budgetData.thisWeek,
+    title: " Begin deze week",
+    id: -2,
+    cloned: 0,
+  });
+  transacties.push({
+    performDate: budgetData.nextWeek,
+    title: " Begin nieuwe week",
+    id: -2,
+    cloned: 0,
+  });
+
+  transacties.sort(SortByDay);
 
   let headerMonth = -1,
     firstOfMonth = -1,
     firstDay = 99;
-  for (let index = 0; index < LastenList.length; index++) {
-    const item = LastenList[index];
+  for (let index = 0; index < transacties.length; index++) {
+    const item = transacties[index];
     const monthYear = item.performDate.month() + item.performDate.year() * 12;
+
+    if (configData.showOldItems == "0" && item.cloned != 0) {
+      continue;
+    }
+
     // create an <tr> element, append it to the <tbody> and cache it as a variable:
     if (headerMonth != monthYear) {
       let options = { year: "numeric", month: "long" };
@@ -226,13 +261,24 @@ export function writeTable(storeData = false) {
       headerMonth = monthYear;
     }
 
+    if (!(item instanceof Transactie)) {
+      addRow(" text-body-tertiary", item.title , item.performDate._day);
+      transacties.splice(index, 1);
+      index--;
+      continue;
+    }
     let classes = "";
-
-    if (item.performDate.isBefore(budgetData.today) && item.cloned != 0) {
-      classes += "bg-info bg-opacity-10 "; //body-secondary
-    } else if (budgetData.startPeriod.isBefore(item.performDate.plusDays(1))) {
+    if (
+      (configData.bankDatum === null && item.isBefore(budgetData.today)) ||
+      (configData.bankDatum != null && item.isBefore(configData.bankDatum))
+    ) {
       classes += "bg-danger  bg-opacity-10 ";
     }
+    //  if (item.performDate.isBefore(budgetData.today) && item.cloned != 0) {
+    //    classes += "bg-info bg-opacity-10 "; //body-secondary
+    //  } else if (budgetData.startPeriod.isBefore(item.performDate)) {
+    //    classes += "bg-danger  bg-opacity-10 ";
+    //  }
     if (item.startItem == 1 && configData.startOfMaand == 0) {
       classes += "strong ";
     }
@@ -240,9 +286,8 @@ export function writeTable(storeData = false) {
       classes += "strike ";
     }
 
-
     if (firstOfMonth != monthYear && firstDay <= item.performDate._day) {
-      addRow("strong " + classes, "Begin financielle maand", firstDay);
+      addRow("strong " + classes, "Begin financiële maand", firstDay);
       firstOfMonth = monthYear;
     }
 
@@ -250,77 +295,45 @@ export function writeTable(storeData = false) {
       classes += "text-ds-wavy-red ";
     }
 
-    const row = addRow(classes, item.title, item.performDate._day, item.amount);
+    const row = addRow(
+      classes,
+      item.title ,
+      item.performDate._day,
+      item.amount
+    );
+    row.setAttribute("data-debug", item.timesInfo + item.debug);
     row.setAttribute("data-bs-toggle", "modal");
     row.setAttribute("data-bs-target", "#transactieModal");
     row.setAttribute("data-bs-whatever", item.id);
   }
 
-  main.baten.innerText = budgetData.baten.toFixed(2);
-  main.baten.setAttribute(
-    "class",
-    budgetData.baten < 0 ? "text-danger" : "text-success"
-  );
-
-  main.lasten.innerText = budgetData.lasten.toFixed(2);
-  main.lasten.setAttribute(
-    "class",
-    budgetData.lasten < 0 ? "text-danger" : "text-success"
-  );
-  main.batenLasten.innerText = budgetData.batenLasten.toFixed(2);
-  main.batenLasten.setAttribute(
-    "class",
-    budgetData.batenLasten < 0 ? "text-danger" : "text-success"
-  );
-  main.calcPerWeek.innerText = budgetData.calcPerWeek.toFixed(2);
-  main.calcPerWeek.setAttribute(
-    "class",
-    budgetData.calcPerWeek < 0 ? "text-danger" : "text-success"
-  );
+  showDetail(main.baten, budgetData.baten);
+  showDetail(main.lasten, budgetData.lasten);
+  showDetail(main.totaalBeschikbaar, budgetData.totaalBeschikbaar);
+  showDetail(main.calcPerWeek, budgetData.calcPerWeek);
+  showDetail(main.spaarBedrag, budgetData.spaarBedrag);
+  showDetail(main.directBeschikbaar, budgetData.directBeschikbaar);
 
   if (!budgetData.noSaldo) {
     document.getElementById("noBankSaldo").classList.add("d-none");
-    document.getElementById("BankSaldo").classList.remove("d-none");
-
-    main.bankSaldo.innerText = configData.bankSaldo.toFixed(2);
-    main.bankSaldo.setAttribute(
-      "class",
-      configData.bankSaldo < 0 ? "text-danger" : "text-success"
-    );
-    main.bankDatum.innerText = configData.bankDatum.toString();
-
-    main.uitgevoerd.innerText = budgetData.uitgevoerd.toFixed(2);
-    main.uitgevoerd.setAttribute(
-      "class",
-      budgetData.uitgevoerd < 0 ? "text-danger" : "text-success"
-    );
-    main.uitgaven.innerText = budgetData.uitgaven.toFixed(2);
-    main.uitgaven.setAttribute(
-      "class",
-      budgetData.uitgaven < 0 ? "text-danger" : "text-success"
-    );
-    main.privateUitgaven.innerText = budgetData.privateUitgaven.toFixed(2);
-    main.privateUitgaven.setAttribute(
-      "class",
-      budgetData.privateUitgaven < 0 ? "text-danger" : "text-success"
-    );
-
-    main.besteedbaar.innerText = budgetData.besteedbaar.toFixed(2);
-    main.besteedbaar.setAttribute(
-      "class",
-      budgetData.besteedbaar < 0 ? "text-danger" : "text-success"
-    );
-    main.weekBudget.innerText = budgetData.weekBudget.toFixed(2);
-    main.weekBudget.setAttribute(
-      "class",
-      budgetData.weekBudget < 0 ? "text-danger" : "text-success"
-    );
-    // main.baten.innerText = budgetData.baten.toFixed(2)
-    // main.baten.setAttribute("class", (budgetData.baten < 0 ? "text-danger" : "text-success"))
   } else {
     document.getElementById("noBankSaldo").classList.remove("d-none");
-    document.getElementById("BankSaldo").classList.add("d-none");
   }
+
+  showDetail(main.bankSaldo, configData.bankSaldo);
+  if (configData.bankDatum) {
+    main.bankDatum.innerText = configData.bankDatum.toString();
+  }
+  showDetail(main.berekendSaldo, budgetData.berekendSaldo);
+
+  showDetail(main.uitgevoerd, budgetData.uitgevoerd);
+  showDetail(main.uitgaven, budgetData.uitgaven);
+  showDetail(main.inkomsten, budgetData.inkomsten);
+  showDetail(main.privateUitgaven, budgetData.privateUitgaven);
+
+  showDetail(main.besteedbaar, budgetData.besteedbaar);
+  showDetail(main.weekBudget, budgetData.weekBudget);
+
   console.log(budgetData, configData);
 }
 
@@ -363,6 +376,16 @@ function addRow(classes, title, dag = null, amount = null) {
   }
   main.lijst.appendChild(row);
   return row;
+}
+
+function showDetail(elem, bedrag) {
+  elem.innerText = bedrag.toFixed(2);
+  elem.setAttribute("class", bedrag < 0 ? "text-danger" : "text-success");
+  if (bedrag == 0.0) {
+    elem.parentElement.classList.add("d-none");
+  } else {
+    elem.parentElement.classList.remove("d-none");
+  }
 }
 
 export function SortByDay(s1, s2) {

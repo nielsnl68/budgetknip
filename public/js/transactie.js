@@ -1,8 +1,10 @@
 /*jshint esversion: 10 */
 "use strict";
 
-import { setDate, nextWeek } from "./utils.js";
+import { setDate, nextWeek, weekNumber } from "./utils.js";
 import { budgetData, configData } from "./configData.js";
+
+const fixedDays = [31, 61, 93, 183, 356, 7]
 
 export default class Transactie {
   #id;
@@ -17,9 +19,9 @@ export default class Transactie {
   #tactic = 0;
 
   #cloned = 0;
-
+  #selected = false;
   #categorie = null;
-
+  debug = "";
 
   constructor(data = null) {
     if (data) {
@@ -95,7 +97,7 @@ export default class Transactie {
         interval = 12;
         break;
       case 6: //  <item>Per week</item>
-        interval = -this.weeks;
+        interval = -this.#weeks;
         break;
     }
     return interval;
@@ -106,6 +108,13 @@ export default class Transactie {
   }
   set tactic(tactic) {
     this.#tactic = tactic * 1;
+  }
+
+  get selected() {
+    return this.#selected;
+  }
+  set selected(selected) {
+    this.#selected = selected;
   }
 
   get startDate() {
@@ -172,39 +181,34 @@ export default class Transactie {
     return this.performDate.isAfter(testDate);
   }
 
-  daysBetween(fixed = true) {
-    if (this.times <= 3 && fixed) {
-      return this.times * 31;
+  days() {
+    if (configData.dagenPerMaand && this.times <= 5) {
+      return fixedDays[this.times-1];
     }
     return this.performDate.until(this.nextDate(), JSJoda.ChronoUnit.DAYS);
-  }
-
-  get day() {
-    return this.performDate.dayOfMonth();
-  }
-
-  get month() {
-    let now = budgetData.today;
-    let year = (this.performDate.year() - now.year()) * 12;
-    return this.performDate.monthValue() - now.monthValue() + year;
   }
 
   get cloned() {
     return this.#cloned;
   }
   set cloned(cloned) {
-    if (typeof value === "boolean") {
-      this.#cloned = cloned ? 1 : 0;
-    } else {
-      this.#cloned = cloned * 1;
-    }
+    this.#cloned = cloned * 1;
+  }
+
+  get timesInfo() {
+    const info = ["M","M2","Q","H","J","W"]
+    let times = info[this.times-1];
+    if (this.times==6) times += this.#weeks
+    if (configData.startOfMaand==0 && this.#startItem == 1) times += "!"
   }
 
   toString() {
     return (
-      this.title +
-      ", " +
       this.performDate.toString("dd/MM/YY") +
+      ", " +
+      this.timesInfo +
+      ", " +
+      this.title +
       ", " +
       this.amount
     );
@@ -236,9 +240,9 @@ export default class Transactie {
         this.#performDate = this.startDate.withYear(today.year());
         break;
       case 6: //  <item>Per week</item>
-        let weekBetween = this.weeks();
-        let weekStart = calcWeeks(this.startDate);
-        let weekEnd = calcWeeks(budgetData.today);
+        let weekBetween = this.#weeks;
+        let weekStart = weekNumber(this.startDate);
+        let weekEnd = weekNumber(budgetData.today);
         let weeks = (weekStart % weekBetween) - (weekEnd % weekBetween);
         let realDate = today.plusWeeks(weeks);
         this.#performDate = nextWeek(

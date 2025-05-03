@@ -17,10 +17,13 @@ var iTemplate = {
 
   lasten: 0.0,
   baten: 0.0,
-  batenLasten: 0.0,
+  spaarBedrag: 0.0,
+  directBeschikbaar: 0.0,
+  totaalBeschikbaar: 0.0,
   calcPerWeek: 0.0,
   weekvalue: 0.0,
 
+  berekendSaldo: 0.0,
   inkomen: 0.0,
 
   uitgaven: 0.0,
@@ -43,8 +46,8 @@ var iTemplate = {
 };
 
 export let configData = {
-  startOfMaand: "2",
-  dagenPerMaand: "1",
+  startOfMaand: "1",
+  dagenPerMaand: "0",
 
   beginSaldo: 0.0,
   beginDatum: null,
@@ -64,7 +67,7 @@ export let budgetData = Object.assign({}, iTemplate);
 
 export function reloadConfig() {
   budgetData = Object.assign({}, iTemplate);
-  budgetData.today = localDate.now();
+  budgetData.today = localDate.now(); // localDate.parse("2025-05-09");//
   budgetData.daysinmonth = budgetData.today.lengthOfMonth();
 
   budgetData.nextWeek = nextWeek(budgetData.today, 1);
@@ -86,8 +89,8 @@ export function reloadConfig() {
 
       budgetData.noSaldo = true;
     }
-    configData.bankSaldo = configData.bankSaldo * 1.0;
   }
+  configData.bankSaldo = configData.bankSaldo * 1.0;
   return budgetData;
 }
 
@@ -124,8 +127,16 @@ export function storeSetting(storeLocal = false) {
       storage = localStorage;
     } else if (!sessionStorage._lijst) {
       appendAlert(
-        "<strong>Preview mode!</strong> U heeft de preview " +
-          "omgeving gewijziged. Wanneer u dit scherm sluit zullen alle wijzigingen verdwijnen.!",
+        "<strong>Preview mode!</strong> Wanneer u dit scherm sluit zullen alle wijzigingen verdwijnen of " +
+          '<a href="#"  '+
+          '                        class="alert-link"'+
+          '                        type="button"'+
+          '                        id="opzettenConfig"'+
+          '                        aria-expanded="false"'+
+          '                        data-bs-toggle="modal"'+
+          '                        data-bs-target="#newSetupModal"'+
+          '                        >start uw BudgetKnip</a> om uw gegevens lokaal te bewaren.'
+          ,
         "danger"
       );
     }

@@ -25,7 +25,7 @@ export let transactieLijst = [
     },
     {
       id: "3",
-      title: "netflix",
+      title: "Streaming service",
       amount: -10.99,
       times: "1",
       startDate: 1556056800000,
@@ -41,6 +41,7 @@ export let transactieLijst = [
       startDate: 1558569600000,
       startitem: 0,
       categorie: "1",
+      tactic: "0",
     },
     {
       id: "5",
@@ -55,7 +56,7 @@ export let transactieLijst = [
     },
     {
       id: "6",
-      title: "huur",
+      title: "huur woning",
       amount: -178.0,
       times: "1",
       startDate: 1556409600000,
@@ -65,7 +66,7 @@ export let transactieLijst = [
     },
     {
       id: "7",
-      title: "zorg premie menzis",
+      title: "zorg premie",
       amount: -153.94,
       times: "1",
       startDate: 1556488800000,
@@ -81,21 +82,21 @@ export let transactieLijst = [
       startDate: 1556834400000,
       startitem: 0,
       categorie: "1",
-      tactic: "2",
+      tactic: "0",
     },
     {
       id: "9",
-      title: "greenchoice",
+      title: "Energie kosten",
       amount: -137.0,
       times: "1",
       startDate: 1557187200000,
       startitem: 0,
       categorie: "1",
-      tactic: "1",
+      tactic: "0",
     },
     {
       id: "10",
-      title: "interpolis",
+      title: "Inboedel verzekering",
       amount: -3.93,
       times: "1",
       startDate: 1555545600000,
@@ -105,7 +106,7 @@ export let transactieLijst = [
     },
     {
       id: "11",
-      title: "ziggo",
+      title: "TV abonnement",
       amount: -31.24,
       times: "1",
       startDate: 1563753600000,
@@ -115,7 +116,7 @@ export let transactieLijst = [
     },
     {
       id: "12",
-      title: "vitens",
+      title: "Net beheerder",
       amount: -16.82,
       times: "1",
       startDate: 1555624800000,

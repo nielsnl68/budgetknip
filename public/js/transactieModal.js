@@ -26,27 +26,17 @@ export default function () {
       dom.header.textContent = "Nieuwe transactie invoeren";
       dom.verwijder.disabled = true;
     } else {
-      dom.header.textContent = "Bestaande transactie aanpassen.";
-      dom.verwijder.disabled = false;
-      for (var index = 0; index < transactieLijst.length; index++) {
-        if (transactieLijst[index].id == recipient) {
-          item = transactieLijst[index];
-          break;
-        }
-      }
-      if (item == null) {
-        alert("De geselecteerde transactie is niet gevonden.");
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-      }
-      dom.form.setAttribute("data-key", index);
+      dom.header.textContent = "Transactie aanpassen.";
+      item = transactieLijst[recipient];
+
+      dom.form.setAttribute("data-key", recipient);
       for (var index = 0; index < dom.form.length; index++) {
 
         const key = dom.form[index].name;
         if (
           dom.form[index].type == "button" ||
           dom.form[index].type == "submit" ||
+          dom.form[index].type == "hidden" ||
           item[key] === undefined
         ) {
           continue;

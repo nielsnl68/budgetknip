@@ -10,7 +10,7 @@ import { initModals } from "./doms.js";
 import { writeTable } from "./filltables.js";
 
 (async () => {
-  await initModals();
+  initModals();
   restoreSetting();
 
   transactieModal();
