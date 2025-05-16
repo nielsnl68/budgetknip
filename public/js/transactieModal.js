@@ -4,7 +4,7 @@
 import { transactie as dom } from "./doms.js";
 import { transactieLijst } from "./transactieLijst.js";
 import { configData } from "./configData.js";
-import { setDate, updateObject }  from "./utils.js";
+import { setDate, updateObject } from "./utils.js";
 import { writeTable } from "./filltables.js";
 
 export default function () {
@@ -31,7 +31,6 @@ export default function () {
 
       dom.form.setAttribute("data-key", recipient);
       for (var index = 0; index < dom.form.length; index++) {
-
         const key = dom.form[index].name;
         if (
           dom.form[index].type == "button" ||
@@ -60,7 +59,7 @@ export default function () {
       }
       if (configData.startOfMaand == 0) {
         dom.startItemDiv.classList.remove("d-none");
-        if (dom.StartItem.checked || item["amount"] < 0) {
+        if (dom.StartItem.checked || item["bedrag"] < 0) {
           dom.StartItem.disabled = true;
         } else {
           dom.StartItem.disabled = false;
@@ -81,6 +80,14 @@ export default function () {
       } else {
         dom.Weeks.classList.add("d-none");
       }
+      if (dom.DirectionOutput.checked) {
+        dom.inputTacticDirect.disabled = true;
+        if (dom.inputTacticDirect.checked) {
+          dom.inputTacticStash.checked = true;
+        }
+      } else {
+        dom.inputTacticDirect.disabled = false;
+      }
     }
   });
 
@@ -93,6 +100,14 @@ export default function () {
         dom.Weeks.value = 1;
       } else {
         dom.Weeks.classList.add("d-none");
+      }
+      if (dom.DirectionOutput.checked) {
+        dom.inputTacticDirect.disabled = true;
+        if (dom.inputTacticDirect.checked) {
+          dom.inputTacticStash.checked = true;
+        }
+      } else {
+        dom.inputTacticDirect.disabled = false;
       }
       if (configData.startOfMaand == 0) {
         if (
@@ -132,12 +147,12 @@ export default function () {
       } else {
         item = transactieLijst[pos];
       }
-      updateObject (item, dom.form);
+      updateObject(item, dom.form);
 
       if (dom.DirectionOutput.checked) {
         item.amount = item.amount * -1.0;
       }
-      if (item.StartItem =="1") {
+      if (item.StartItem == "1") {
         for (var x = 0; x < transactieLijst.length; x++) {
           transactieLijst[x].startitem = "0";
         }

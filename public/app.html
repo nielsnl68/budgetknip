@@ -125,7 +125,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#transactieModal">
                   <i class="bi bi-calendar-plus-fill"></i>
-                  <span class="visually-hidden">transactie toevoegen</span>
+                  <span class="visually-hidden">Transactie toevoegen</span>
                 </button>
               </div>
               <div class="card-scroller overflow-auto tableFixHead">
@@ -197,7 +197,8 @@
                         id="verwijderConfig"
                         class="dropdown-item text-danger"
                         type="button"
-                        >Gegevens Verwijderen</button>
+                        >Gegevens Verwijderen</button
+                      >
                     </li>
                   </ul>
                 </div>
@@ -205,36 +206,36 @@
 
               <ul class="list-group list-group-flush budget">
                 <li class="list-group-item border-0 py-1">
-                  Totaal te ontvangen bedrag
-                  <span id="baten" class="text-end float-end">0.00</span>
+                  Totaal te ontvangen deze maand
+                  <span id="baten" class="text-end float-end no-none"
+                    >0.00</span
+                  >
+                </li>
+                <li class="list-group-item border-0 py-1 no-none">
+                  Totaal uit te geven deze maand
+                  <span id="lasten" class="text-end float-end">0.00</span>
                 </li>
                 <li class="list-group-item border-0 py-1">
                   Bedrag dat wordt gespaard
                   <span id="spaarBedrag" class="text-end float-end">0.00</span>
                 </li>
                 <li class="list-group-item border-0 py-1">
-                  Hiervan is direct beschikbaar
+                  Direct beschikbaar bedrag
                   <span id="directBeschikbaar" class="text-end float-end"
                     >0.00</span
                   >
                 </li>
-
-                <li class="list-group-item border-0 py-1">
-                  Totaal uit te geven kosten
-                  <span id="lasten" class="text-end float-end">0.00</span>
-                </li>
-
-                <li class="list-group-item border-0 py-1 strong">
-                    Totaal besteedbare bedrag
-                    <span id="totaalBeschikbaar" class="text-end float-end"
-                      >0.00</span>
+                <li class="list-group-item border-0 py-1 strong no-none">
+                  Totaal bedrag
+                  <span id="totaalBeschikbaar" class="text-end float-end"
+                    >0.00</span
+                  >
                 </li>
               </ul>
-              <div class="card-footer budget strong">
-                  Besteedbaar per week
-                  <span id="calcPerWeek" class="text-end float-end"
-                    >0.00</span>
-            </div>
+              <div class="card-footer budget strong no-none">
+                Berekende week budget
+                <span id="calcPerWeek" class="text-end float-end">0.00</span>
+              </div>
             </div>
             <div class="card">
               <div
@@ -252,16 +253,16 @@
                   <span class="visually-hidden">Banksaldo invoeren</span>
                 </button>
               </div>
-              <ul class="list-group list-group-flush budget" id="BankSaldo">
-                <li
-                  class="list-group-item list-group-item-danger fw-medium"
-                  id="noBankSaldo"
+              <ul class="list-group list-group-flush budget" id="noBankSaldo">
+                <li class="list-group-item list-group-item-danger fw-medium"
                   >Het banksaldo is nog niet ingevuld of is verouderd.
                   <span class="ms-auto fw-light text-body-secondary"
                     >Klik op de
                     <i class="bi bi-currency-exchange"></i> hierboven.</span
                   >
                 </li>
+              </ul>
+              <ul class="list-group list-group-flush budget" id="hasBankSaldo">
                 <li class="list-group-item border-0 py-1">
                   Banksaldo op <span id="saldoDate"></span>
                   <span id="saldo" class="text-end ms-auto">0.00</span>
@@ -285,11 +286,12 @@
                 <li class="list-group-item border-0 py-1">
                   Prive uitgaven
                   <span id="privateUitgaven" class="text-end float-end"
-                    >0.00</span>
+                    >0.00</span
+                  >
                 </li>
                 <li class="list-group-item border-0 py-1 strong">
-                    Werkelijk besteedbaar
-                    <span id="besteedbaar" class="text-end float-end"></span>
+                  Werkelijk besteedbaar
+                  <span id="besteedbaar" class="text-end float-end"></span>
                 </li>
               </ul>
               <div class="card-footer budget strong">
@@ -404,7 +406,7 @@
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputAmount" class="col-3 col-form-label"
+                <label for="inputBedrag" class="col-3 col-form-label"
                   >Bedrag</label
                 >
                 <div class="col-4">
@@ -415,7 +417,7 @@
                       name="amount"
                       class="form-control text-end"
                       step=".01"
-                      id="inputAmount"
+                      id="inputBedrag"
                       value="0.00"
                       required />
                     <input
@@ -738,7 +740,7 @@
             <input type="hidden" name="beginDatum" />
 
             <div class="modal-body">
-              <div class="row mb-3 d-none">
+              <div class="row mb-3">
                 <label for="inputstartOfMaand" class="col-4 col-form-label"
                   >Start financieele maand</label
                 >
@@ -747,10 +749,31 @@
                     class="form-select"
                     id="inputstartOfMaand"
                     name="startOfMaand"
-                    aria-label="Select frequentie">
-                    <option value="2">Eerste maandag van de maand</option>
+                    aria-label="Selecteer wanneer de financieele maand begint">
                     <option value="1" selected>Eerste dag van de maand</option>
+                    <option value="2">Eerste maandag van de maand</option>
+                    <option value="3">Op de dag van vandaag</option>
                     <option value="0">Opgeven in de transactie</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputstartOfWeek" class="col-4 col-form-label"
+                  >Begin van de week</label
+                >
+                <div class="col-sm-7">
+                  <select
+                    class="form-select"
+                    id="inputstartOfWeek"
+                    name="startOfWeek"
+                    aria-label="Selecteer wanneer de week begint">
+                    <option value="1" selected>Maandag</option>
+                    <option value="2">Dinsdag</option>
+                    <option value="3">Woensdag</option>
+                    <option value="4">Donderdag</option>
+                    <option value="5">Vrijdag</option>
+                    <option value="6">Zaterdag</option>
+                    <option value="0">Zondag</option>
                   </select>
                 </div>
               </div>

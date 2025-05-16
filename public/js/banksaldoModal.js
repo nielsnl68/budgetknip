@@ -33,10 +33,9 @@ export default function () {
           items["B" + item.id] = item;
         }
       } else if (
-        !item.isAfter(budgetData.today.plusDays(configData.lastenValid)) &&
-            (!("a" + item.id in items)) ||
-            item.isBefore(items["a" + item.id].performDate)
-
+        (!item.isAfter(budgetData.today.plusDays(configData.lastenValid)) &&
+          !("a" + item.id in items)) ||
+        item.isBefore(items["a" + item.id].performDate)
       ) {
         items["a" + item.id] = item;
       }
@@ -86,7 +85,7 @@ function addItem(item) {
   cellCol.setAttribute("type", "checkbox");
   cellCol.setAttribute("class", "form-check-input mx-2 listPayments");
   cellCol.setAttribute("name", "listPayments");
-  cellCol.setAttribute("data-amount", item.amount);
+  cellCol.setAttribute("data-bedrag", item.amount);
   cellCol.setAttribute("value", item.index);
   cellCol.setAttribute("id", "listPayments_" + item.index);
   cellCol.checked = item.selected;

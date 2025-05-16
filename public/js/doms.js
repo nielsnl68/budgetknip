@@ -15,7 +15,7 @@ export const main = {
   calcPerWeek: "calcPerWeek",
 
   noBankSaldo: "noBankSaldo",
-  hasBankSaldo: "BankSaldo",
+  hasBankSaldo: "hasBankSaldo",
 
   bankSaldo: "saldo",
   bankDatum: "saldoDate",
@@ -60,6 +60,8 @@ export const transactie ={
   StartItem: "inputStartItem",
   startItemDiv: "startItemDiv",
   TacticIgnore: "inputTacticIgnore",
+  inputTacticDirect: "inputTacticDirect",
+  inputTacticStash: "inputTacticStash",
 };
 export const bankSaldo = {
   modal: "bankSaldoModel",

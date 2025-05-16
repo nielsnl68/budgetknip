@@ -35,11 +35,19 @@ export function nextWeek(current, dayOfWeek= null, incl= true) {
 }
 
 export function weekNumber(testing) {
-  let start = dayjs("2020-1-1").startOf("w");
-  let finish = setDate(testing).endOf("w");
-  return d1.until(d2, JSJoda.ChronoUnit.WEEKS);
+  let start = localDate.parse("2020-01-01");
+  let sday = start.dayOfWeek().value();
+  let start2 = start.minusDays(sday)
+  let finish = setDate(testing);
+  let fday = finish.dayOfWeek().value();
 
+  let finish2 = finish.plusDays(6-(fday))
+  let result = start2.until(finish2, JSJoda.ChronoUnit.WEEKS);
+  console.log(start, sday, start2, finish, fday, finish2, result);
+  return result;
 }
+
+weekNumber(localDate.parse("2021-01-01"))
 
 
 export function updateObject(data, form ) {

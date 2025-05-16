@@ -4,7 +4,7 @@
 import { setDate, nextWeek, weekNumber } from "./utils.js";
 import { budgetData, configData } from "./configData.js";
 
-const fixedDays = [31, 61, 93, 183, 356, 7]
+const fixedDays = [31, 61, 93, 183, 356, 7];
 
 export default class Transactie {
   #id;
@@ -35,6 +35,7 @@ export default class Transactie {
       this.finalDate = data.finalPayment;
       this.startItem = data.startitem;
       this.categorie = data.categorie;
+      this.debug = data.debug;
     }
   }
 
@@ -57,6 +58,10 @@ export default class Transactie {
   }
   set amount(amount) {
     this.#amount = amount * 1.0;
+  }
+
+  get bedragPerDag() {
+    return this.#amount / this.days;
   }
 
   get startItem() {
@@ -155,6 +160,8 @@ export default class Transactie {
     } else {
       result = date.plusMonths(interval);
     }
+    //TODO: add finaldate check
+
     return result;
   }
 
@@ -167,23 +174,24 @@ export default class Transactie {
     } else {
       result = date.minusMonths(interval);
     }
+    //TODO: add startdate check
 
     return result;
   }
 
   isBefore(testDate = null) {
-    if (!testDate) return false
+    if (!testDate) return false;
     return this.performDate.isBefore(testDate);
   }
 
-  isAfter(testDate= null) {
-    if (!testDate) return false
+  isAfter(testDate = null) {
+    if (!testDate) return false;
     return this.performDate.isAfter(testDate);
   }
 
-  days() {
+  get days() {
     if (configData.dagenPerMaand && this.times <= 5) {
-      return fixedDays[this.times-1];
+      return fixedDays[this.times - 1];
     }
     return this.performDate.until(this.nextDate(), JSJoda.ChronoUnit.DAYS);
   }
@@ -195,22 +203,24 @@ export default class Transactie {
     this.#cloned = cloned * 1;
   }
 
-  get timesInfo() {
-    const info = ["M","M2","Q","H","J","W"]
-    let times = info[this.times-1];
-    if (this.times==6) times += this.#weeks
-    if (configData.startOfMaand==0 && this.#startItem == 1) times += "!"
+  get info() {
+    const times = ["M", "M2", "Q", "H", "J", "W"];
+    const tactics = ["b","d","s"]
+    let result = times[this.times - 1];
+    if (this.times == 6) result += this.#weeks;
+    if (configData.startOfMaand == 0 && this.#startItem == 1) result += "!";
+    return result + ((this.#tactic==-1)?"h":tactics[this.#tactic]);
   }
 
   toString() {
     return (
       this.performDate.toString("dd/MM/YY") +
       ", " +
-      this.timesInfo +
+      this.info +
       ", " +
       this.title +
       ", " +
-      this.amount
+      this.amount.toFixed(2)
     );
   }
 
@@ -233,7 +243,8 @@ export default class Transactie {
       case 3: //  <item>Per kwartaal</item>
       case 4: //  <item>Half jaar</item>
         let z = this.interval;
-        let months = (this.startDate.month() % z) - (today.month() % z);
+        let months =
+          (this.startDate.month().value() % z) - (today.month().value() % z);
         this.#performDate = this.performDate.plusMonths(months);
         break;
       case 5: //  <item>Per jaar</item>

@@ -20,6 +20,7 @@ var iTemplate = {
   spaarBedrag: 0.0,
   directBeschikbaar: 0.0,
   totaalBeschikbaar: 0.0,
+  bedragPerWeek: 0.0,
   calcPerWeek: 0.0,
   weekvalue: 0.0,
 
@@ -39,7 +40,7 @@ var iTemplate = {
 
   expance: 0.0,
 
-  startPeriod: null,
+  thisPeriod: null,
   nextPeriod: null,
   thisWeek: null,
   nextWeek: null,
@@ -98,17 +99,21 @@ export function setFirstDate() {
   switch (configData.startOfMaand * 1) {
     case 0:
       if (budgetData.firstItem) {
-        budgetData.startPeriod = budgetData.firstItem.performDate;
-        budgetData.nextPeriod = budgetData.startPeriod.plusMonths(1);
+        budgetData.thisPeriod = budgetData.firstItem.performDate;
+        budgetData.nextPeriod = budgetData.thisPeriod.plusMonths(1);
         break;
       }
     case 1:
-      budgetData.startPeriod = budgetData.today.withDayOfMonth(1);
-      budgetData.nextPeriod = budgetData.startPeriod.plusMonths(1);
+      budgetData.thisPeriod = budgetData.today.withDayOfMonth(1);
+      budgetData.nextPeriod = budgetData.thisPeriod.plusMonths(1);
       break;
     case 2:
-      budgetData.startPeriod = calcFirstWeekday(budgetData.today);
-      budgetData.nextPeriod = calcFirstWeekday(budgetData.startPeriod.plusMonths(1).plusDays(5));
+      budgetData.thisPeriod = calcFirstWeekday(budgetData.today);
+      budgetData.nextPeriod = calcFirstWeekday(budgetData.thisPeriod.plusMonths(1).plusDays(5));
+      break;
+    case 3:
+      budgetData.thisPeriod = budgetData.today;
+      budgetData.nextPeriod = budgetData.thisPeriod.plusMonths(1);
       break;
   }
 }
